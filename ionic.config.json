@@ -1,0 +1,7 @@
+{
+  "name": "KUREUIL",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
