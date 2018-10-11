@@ -6,9 +6,14 @@ import { NavController } from 'ionic-angular';
   templateUrl: 'home.html'
 })
 export class HomePage {
+  email: string;
+  password: string;
 
   constructor(public navCtrl: NavController) {
 
   }
 
+  login() {
+      console.log(this.email + '' + this.password);
+  }
 }

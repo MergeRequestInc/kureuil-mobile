@@ -56,9 +56,12 @@ var HomePage = /** @class */ (function () {
     function HomePage(navCtrl) {
         this.navCtrl = navCtrl;
     }
+    HomePage.prototype.login = function () {
+        console.log(this.email + '' + this.password);
+    };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"/Users/uydu/Desktop/KUREUIL/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      Ionic Blank\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  The world is your oyster.\n  <p>\n    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.\n  </p>\n</ion-content>\n'/*ion-inline-end:"/Users/uydu/Desktop/KUREUIL/src/pages/home/home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"/Users/uydu/Desktop/Ionic/kureuil-mobile/src/pages/home/home.html"*/'<ion-header>\n  <ion-toolbar>\n    <ion-title color="white">KUREUIL</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-row style="padding-top: 10%">\n    <ion-col text-center>\n      <h2>Connection</h2>\n    </ion-col>\n  </ion-row>\n  <div class="login-box">\n    <form (ngSubmit)="login()">\n        <ion-label>Email</ion-label>\n        <ion-item>\n          <ion-input type="text" [ngModel]="email" name="userEmail" placeholder="Enter user email"></ion-input>\n        </ion-item>\n        <ion-label>Password</ion-label>\n        <ion-item>\n          <ion-input type="password" [ngModel]="password" name="userPassword" placeholder="********"></ion-input>\n        </ion-item>\n      <button class="validate" ion-button type="submit" small block>Validate</button>\n    </form>\n  </div>\n</ion-content>\n'/*ion-inline-end:"/Users/uydu/Desktop/Ionic/kureuil-mobile/src/pages/home/home.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]])
     ], HomePage);
@@ -177,7 +180,7 @@ var MyApp = /** @class */ (function () {
         });
     }
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/uydu/Desktop/KUREUIL/src/app/app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"/Users/uydu/Desktop/KUREUIL/src/app/app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/uydu/Desktop/Ionic/kureuil-mobile/src/app/app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"/Users/uydu/Desktop/Ionic/kureuil-mobile/src/app/app.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
     ], MyApp);
