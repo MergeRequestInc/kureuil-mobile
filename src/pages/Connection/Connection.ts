@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+  selector: 'page-connection',
+  templateUrl: 'Connection.html'
 })
-export class HomePage {
+export class ConnectionPage {
   email: string;
   password: string;
 
