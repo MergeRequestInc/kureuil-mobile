@@ -1,26 +1,30 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title color="white">KUREUIL</ion-title>
+      <ion-title style="background-color: #bc7e40;" text-center>Kureil</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
   <ion-row style="padding-top: 10%">
     <ion-col text-center>
-      <h2>Connection</h2>
+      <h2 style="color: #bc7e40">Connection</h2>
     </ion-col>
   </ion-row>
   <div class="login-box">
-    <form (ngSubmit)="login()">
-        <ion-label>Email</ion-label>
+    <form (ngSubmit)="login(email,password)">
+        <ion-label color="primary">Email</ion-label>
         <ion-item>
           <ion-input type="text" [ngModel]="email" name="userEmail" placeholder="Enter user email"></ion-input>
         </ion-item>
-        <ion-label>Password</ion-label>
+        <ion-label color="primary" >Password</ion-label>
         <ion-item>
           <ion-input type="password" [ngModel]="password" name="userPassword" placeholder="********"></ion-input>
         </ion-item>
-      <button class="validate" ion-button type="submit" small block>Validate</button>
+      <button ion-button type="submit" round outline style="margin-left: 100px;">Login</button>
     </form>
+    <ion-row>
+        <button ion-button style="border-radius: 10%;" outline (click)="registerUser()">Register</button>
+        <button ion-button style="border-radius: 10%;" outline (click)="motPasseOublie()">Mot de passe oublié</button>
+    </ion-row>
   </div>
 </ion-content>
