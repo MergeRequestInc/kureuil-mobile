@@ -11,7 +11,7 @@
     </ion-col>
   </ion-row>
   <div class="login-box">
-    <form (ngSubmit)="login(email,password)">
+    <form #f="ngForm" (ngSubmit)="login(f)">
         <ion-label color="primary">Email</ion-label>
         <ion-item>
           <ion-input type="text" [ngModel]="email" name="userEmail" placeholder="Enter user email"></ion-input>

@@ -5,6 +5,11 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { MyApp } from './app.component';
+import {AuthenficationServices} from "../services/authenfication.services";
+import {PasswordServices} from "../services/password.services";
+import {RegisterServices} from "../services/register.services";
+import {HttpModule} from "@angular/http";
+import {HttpClientModule} from "@angular/common/http";
 
 describe('MyApp', () => {
 
@@ -21,6 +26,24 @@ describe('MyApp', () => {
         hide: (): void => undefined
     };
 
+    const authenficationServices = {
+        hide: (): void => undefined
+    };
+
+    const passwordServices = {
+        hide: (): void => undefined
+    };
+
+    const registerServices = {
+        hide: (): void => undefined
+    };
+
+    const httpModule = {
+        hide: (): void => undefined
+    };
+
+
+
     beforeEach(() => {
         TestBed.configureTestingModule({
             schemas: [
@@ -32,14 +55,20 @@ describe('MyApp', () => {
             providers: [
                 {provide: Platform, useValue: platformStub},
                 {provide: StatusBar, useValue: statusBarStub},
-                {provide: SplashScreen, useValue: splashScreenStub}
+                {provide: SplashScreen, useValue: splashScreenStub},
+                {provide: AuthenficationServices, useValue: authenficationServices},
+                {provide: PasswordServices, useValue: passwordServices},
+                {provide: RegisterServices, useValue: registerServices},
+                {provide: HttpClientModule, useValue: httpModule}
+
             ]
         }).compileComponents();
     });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(MyApp);
-        instance = fixture.debugElement.componentInstance;
+        instance = fixture.componentInstance;
+        fixture.detectChanges();
     });
 
     it('should create the root page', () => {

@@ -8,14 +8,14 @@ export class PasswordServices {
     /**
      * Reset password with the email
      */
-    forgotPassword(email:String) {
+    forgotPassword(email:string) {
         return this.http.post('http://localhost:8080' + 'api/reset-password', email);
     }
 
     /**
      * Reset password with the email
      */
-    changePassword(newPassword: String) {
+    changePassword(newPassword: string) {
         return this.http.post('http://localhost:8080'+ 'api/change-password', newPassword);
 
     }

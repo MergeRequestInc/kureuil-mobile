@@ -3,6 +3,7 @@ import {RegisterServices} from "../../services/register.services";
 import {AuthenficationServices} from "../../services/authenfication.services";
 import {PasswordServices} from "../../services/password.services";
 import {AlertController} from "ionic-angular";
+import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'page-connection',
@@ -12,18 +13,19 @@ export class ConnectionPage {
     email: string;
     password: string;
 
-    constructor(private authenficationService: AuthenficationServices,
+    constructor(private authenService: AuthenficationServices,
                 private registerService: RegisterServices, private passwordService: PasswordServices,
                 private alertCtl: AlertController) {
     }
 
-    login(email: String, password: String) {
-        this.authenficationService.login(email, password);
+    login(form: NgForm) {
+        this.authenService.login(form.value.userEmail, form.value.userPassword);
+        console.log(form.value);
         this.email = "";
         this.password = "";
     }
 
-    registerUser(email: String, password: String) {
+    registerUser() {
         const alert = this.alertCtl.create({
             title: 'Register',
             message: 'Enter email and password',
@@ -44,7 +46,7 @@ export class ConnectionPage {
                     text: 'Register',
                     handler: (data) =>{
                         if(data.Email != null && data.Password != null) {
-                            this.registerService.register(email, password);
+                            this.registerService.register(data.Email, data.Password);
                         }
                     }
                 },
@@ -58,7 +60,7 @@ export class ConnectionPage {
         alert.present();
     }
 
-    motPasseOublie(email: String) {
+    motPasseOublie() {
         const alert = this.alertCtl.create({
             title: 'Forget password',
             message: 'Enter email to recover your password',
@@ -75,7 +77,7 @@ export class ConnectionPage {
                     text: 'Reset',
                     handler: (data) =>{
                         if(data.email != null) {
-                            this.passwordService.forgotPassword(email);
+                            this.passwordService.forgotPassword(data.email);
                         }
                     }
                 },

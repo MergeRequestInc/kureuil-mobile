@@ -9,7 +9,7 @@ export class AuthenficationServices {
     /**
      * Login with the email and password
      */
-    login(email: String, password:String) {
+    login(email: string, password:string) {
         const data = {email: email, password: password};
         return this.http.post('http://localhost:8080' + 'login', data);
     }

@@ -7,8 +7,8 @@ export class RegisterServices {
 
     }
 
-    register(email: String, password: String){
+    register(email: string, password: string){
         const data = {email: email, password: password};
-        return this.http.post('http://localhost:8080' + 'register', data);
+        return this.http.post('http://localhost:8080' + '/user/register', data);
     }
 }
