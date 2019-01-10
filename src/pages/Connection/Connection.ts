@@ -19,25 +19,32 @@ export class ConnectionPage {
     }
 
     login(form: NgForm) {
-        this.authenService.login(form.value.userEmail, form.value.userPassword);
-        console.log(form.value);
+        this.authenService.login(form.value.email, form.value.userPassword).subscribe((text)=>{
+            console.log("OK");
+        }, (error) => {
+            console.log(error);
+        });
         this.email = "";
         this.password = "";
     }
 
     registerUser() {
         const alert = this.alertCtl.create({
-            title: 'Register',
-            message: 'Enter email and password',
+            title: 'Registration',
             inputs: [
                 {
+                    name: 'Name',
+                    placeholder: 'Your name',
+                    type: 'text'
+                },
+                {
                     name: 'Email',
-                    placeholder: 'Enter email',
+                    placeholder: 'Your Email',
                     type: 'text'
                 },
                 {
                     name: 'Password',
-                    placeholder: 'Enter Password',
+                    placeholder: 'Your Password',
                     type: 'password'
                 }
             ],
@@ -45,8 +52,13 @@ export class ConnectionPage {
                 {
                     text: 'Register',
                     handler: (data) =>{
-                        if(data.Email != null && data.Password != null) {
-                            this.registerService.register(data.Email, data.Password);
+                        if(data.Name != null && data.Email != null && data.Password != null) {
+                            console.log("register");
+                            this.registerService.register(data.Name, data.Email, data.Password).subscribe(() =>{
+                                console.log("Success");
+                            }, () =>{
+                                console.log("error");
+                            });
                         }
                     }
                 },
@@ -60,10 +72,9 @@ export class ConnectionPage {
         alert.present();
     }
 
-    motPasseOublie() {
+    forgotPassword() {
         const alert = this.alertCtl.create({
-            title: 'Forget password',
-            message: 'Enter email to recover your password',
+            title: 'Forgotten password',
             inputs: [
                 {
                     name: 'email',
@@ -74,7 +85,7 @@ export class ConnectionPage {
             ],
             buttons: [
                 {
-                    text: 'Reset',
+                    text: 'Reclaim',
                     handler: (data) =>{
                         if(data.email != null) {
                             this.passwordService.forgotPassword(data.email);

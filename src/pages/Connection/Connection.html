@@ -1,20 +1,20 @@
 <ion-header>
   <ion-toolbar>
-      <ion-title style="background-color: #bc7e40;" text-center>Kureil</ion-title>
+      <ion-title text-center>Kureuil</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
   <ion-row style="padding-top: 10%">
     <ion-col text-center>
-      <h2 style="color: #bc7e40">Connection</h2>
+      <h2 style="color: #4286f4">Connection</h2>
     </ion-col>
   </ion-row>
   <div class="login-box">
     <form #f="ngForm" (ngSubmit)="login(f)">
         <ion-label color="primary">Email</ion-label>
         <ion-item>
-          <ion-input type="text" [ngModel]="email" name="userEmail" placeholder="Enter user email"></ion-input>
+          <ion-input type="text" [ngModel]="email" name="email" placeholder="Enter user email"></ion-input>
         </ion-item>
         <ion-label color="primary" >Password</ion-label>
         <ion-item>
@@ -24,7 +24,7 @@
     </form>
     <ion-row>
         <button ion-button style="border-radius: 10%;" outline (click)="registerUser()">Register</button>
-        <button ion-button style="border-radius: 10%;" outline (click)="motPasseOublie()">Mot de passe oublié</button>
+        <button ion-button style="border-radius: 10%;" outline (click)="forgotPassword()">I forgot my password</button>
     </ion-row>
   </div>
 </ion-content>
