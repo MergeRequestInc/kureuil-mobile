@@ -71,7 +71,7 @@ import {HttpClient, HttpClientModule, HttpHandler} from "@angular/common/http";
 import {RegisterServices} from "../../services/register.services";
 import {PasswordServices} from "../../services/password.services";
 import {AlertController, App, Config, Platform} from "ionic-angular";
-import {FormsModule, NgForm} from "@angular/forms";
+import {ControlContainer, FormsModule, NgForm} from "@angular/forms";
 import {By} from "@angular/platform-browser";
 
 describe('ConnectionPage',() =>{
@@ -83,7 +83,7 @@ describe('ConnectionPage',() =>{
            declarations: [ConnectionPage],
            imports: [FormsModule, HttpClientModule],
            schemas: [CUSTOM_ELEMENTS_SCHEMA],
-           providers: [AlertController, AuthenficationServices, RegisterServices, PasswordServices, App, Config, Platform]
+           providers: [ControlContainer, AlertController, AuthenficationServices, RegisterServices, PasswordServices, App, Config, Platform]
        }).compileComponents();
    }));
 

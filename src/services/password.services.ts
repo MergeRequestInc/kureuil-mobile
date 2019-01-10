@@ -9,6 +9,6 @@ export class PasswordServices {
      * Reset password with the email
      */
     forgotPassword(email:string) {
-        return this.http.post('http://localhost:8080' + '/resetpassword', email);
+        return this.http.post('http://localhost:8080' + '/account/reset-password/init', email);
     }
 }

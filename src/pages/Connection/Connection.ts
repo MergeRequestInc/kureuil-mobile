@@ -1,26 +1,33 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {RegisterServices} from "../../services/register.services";
 import {AuthenficationServices} from "../../services/authenfication.services";
 import {PasswordServices} from "../../services/password.services";
-import {AlertController} from "ionic-angular";
-import {NgForm} from "@angular/forms";
+import {AlertController, NavController} from "ionic-angular";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {HomePage} from "../home/home";
 
 @Component({
   selector: 'page-connection',
   templateUrl: 'Connection.html'
 })
-export class ConnectionPage {
+export class ConnectionPage implements OnInit{
     email: string;
     password: string;
+    loginForm: FormGroup;
 
     constructor(private authenService: AuthenficationServices,
                 private registerService: RegisterServices, private passwordService: PasswordServices,
-                private alertCtl: AlertController) {
+                private alertCtl: AlertController, private navCtrl: NavController) {
     }
 
-    login(form: NgForm) {
-        this.authenService.login(form.value.email, form.value.userPassword).subscribe((text)=>{
-            console.log("OK");
+    ngOnInit() {
+        this.initializeForm();
+    }
+
+    login() {
+        this.authenService.login(this.loginForm.value.email, this.loginForm.value.userPassword).subscribe((text)=>{
+            //console.log("OK");
+            this.navCtrl.push(HomePage);
         }, (error) => {
             console.log(error);
         });
@@ -99,5 +106,15 @@ export class ConnectionPage {
             ]
         });
         alert.present();
+    }
+
+    private initializeForm() {
+        this.loginForm = new FormGroup({
+            'email': new FormControl(null,Validators.compose([
+                Validators.required,
+                Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+                ])),
+            'userPassword': new FormControl(null,Validators.required)
+        });
     }
 }

@@ -11,20 +11,20 @@
     </ion-col>
   </ion-row>
   <div class="login-box">
-    <form #f="ngForm" (ngSubmit)="login(f)">
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
         <ion-label color="primary">Email</ion-label>
         <ion-item>
-          <ion-input type="text" [ngModel]="email" name="email" placeholder="Enter user email"></ion-input>
+          <ion-input type="text" [ngModel]="email" formControlName="email" placeholder="Enter user email"></ion-input>
         </ion-item>
         <ion-label color="primary" >Password</ion-label>
         <ion-item>
-          <ion-input type="password" [ngModel]="password" name="userPassword" placeholder="********"></ion-input>
+          <ion-input type="password" [ngModel]="password" formControlName="userPassword" placeholder="********"></ion-input>
         </ion-item>
       <button ion-button type="submit" round outline style="margin-left: 100px;">Login</button>
     </form>
     <ion-row>
-        <button ion-button style="border-radius: 10%;" outline (click)="registerUser()">Register</button>
-        <button ion-button style="border-radius: 10%;" outline (click)="forgotPassword()">I forgot my password</button>
+        <button ion-button style="border-radius: 10%;" outline block (click)="registerUser()">Register</button>
+        <button ion-button style="border-radius: 10%;" block outline (click)="forgotPassword()">I forgot my password</button>
     </ion-row>
   </div>
 </ion-content>
