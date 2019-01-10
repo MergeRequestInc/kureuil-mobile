@@ -67,11 +67,12 @@ import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 import {ConnectionPage} from "./Connection";
 import {CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
 import {AuthenficationServices} from "../../services/authenfication.services";
-import {HttpClient, HttpHandler} from "@angular/common/http";
+import {HttpClient, HttpClientModule, HttpHandler} from "@angular/common/http";
 import {RegisterServices} from "../../services/register.services";
 import {PasswordServices} from "../../services/password.services";
-import {AlertController} from "ionic-angular";
-import {NgForm} from "@angular/forms";
+import {AlertController, App, Config, Platform} from "ionic-angular";
+import {FormsModule, NgForm} from "@angular/forms";
+import {By} from "@angular/platform-browser";
 
 describe('ConnectionPage',() =>{
    let fixture: ComponentFixture<ConnectionPage>;
@@ -80,8 +81,9 @@ describe('ConnectionPage',() =>{
    beforeEach(async(() =>{
        TestBed.configureTestingModule({
            declarations: [ConnectionPage],
+           imports: [FormsModule, HttpClientModule],
            schemas: [CUSTOM_ELEMENTS_SCHEMA],
-           providers: [AlertController, AuthenficationServices, HttpClient, HttpHandler, RegisterServices, PasswordServices]
+           providers: [AlertController, AuthenficationServices, RegisterServices, PasswordServices, App, Config, Platform]
        }).compileComponents();
    }));
 
@@ -93,6 +95,35 @@ describe('ConnectionPage',() =>{
 
 
    it('should create', () =>{
-        expect(true).toBe(true);
+        expect(component).toBeTruthy();
    });
+
+        it('should create the Connection page', () => {
+        expect(component).toBeTruthy();
+    });
+
+    it('should show a title', () => {
+        const h2: HTMLHeadingElement = fixture.debugElement.query(By.css('ion-title')).nativeElement;
+        expect(h2.textContent).toContain('Kureil');
+    });
+
+    it('Should show a connection card title', () => {
+        const h2 : HTMLHeadingElement = fixture.debugElement.query(By.css('h2')).nativeElement;
+        expect(h2.textContent).toContain('Connection');
+    });
+
+    it('should show 2 label Email et Password', () => {
+        const number = fixture.debugElement.queryAll(By.css('ion-label')).length
+        expect(number).toEqual(2);
+    });
+
+    it('should show 2 input Email et Password', () => {
+        const number = fixture.debugElement.queryAll(By.css('ion-input')).length
+        expect(number).toEqual(2);
+    });
+
+    it('should contain a login button', () => {
+        const button: HTMLButtonElement = fixture.debugElement.query(By.css('button')).nativeElement;
+        expect(button.textContent).toBe('Login');
+    });
 });

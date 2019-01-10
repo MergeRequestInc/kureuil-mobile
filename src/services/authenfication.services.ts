@@ -11,6 +11,6 @@ export class AuthenficationServices {
      */
     login(email: string, password:string) {
         const data = {email: email, password: password};
-        return this.http.post('http://localhost:8080' + 'login', data);
+        return this.http.post('http://localhost:8080' + '/user/login', data);
     }
 }
