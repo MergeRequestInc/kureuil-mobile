@@ -1,43 +1,57 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {RegisterServices} from "../../services/register.services";
 import {AuthenficationServices} from "../../services/authenfication.services";
 import {PasswordServices} from "../../services/password.services";
-import {AlertController} from "ionic-angular";
-import {NgForm} from "@angular/forms";
+import {AlertController, NavController} from "ionic-angular";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {HomePage} from "../home/home";
 
 @Component({
   selector: 'page-connection',
   templateUrl: 'Connection.html'
 })
-export class ConnectionPage {
+export class ConnectionPage implements OnInit{
     email: string;
     password: string;
+    loginForm: FormGroup;
 
     constructor(private authenService: AuthenficationServices,
                 private registerService: RegisterServices, private passwordService: PasswordServices,
-                private alertCtl: AlertController) {
+                private alertCtl: AlertController, private navCtrl: NavController) {
     }
 
-    login(form: NgForm) {
-        this.authenService.login(form.value.userEmail, form.value.userPassword);
-        console.log(form.value);
+    ngOnInit() {
+        this.initializeForm();
+    }
+
+    login() {
+        this.authenService.login(this.loginForm.value.email, this.loginForm.value.userPassword).subscribe((text)=>{
+            //console.log("OK");
+            this.navCtrl.push(HomePage);
+        }, (error) => {
+            console.log(error);
+        });
         this.email = "";
         this.password = "";
     }
 
     registerUser() {
         const alert = this.alertCtl.create({
-            title: 'Register',
-            message: 'Enter email and password',
+            title: 'Registration',
             inputs: [
                 {
+                    name: 'Name',
+                    placeholder: 'Your name',
+                    type: 'text'
+                },
+                {
                     name: 'Email',
-                    placeholder: 'Enter email',
+                    placeholder: 'Your email',
                     type: 'text'
                 },
                 {
                     name: 'Password',
-                    placeholder: 'Enter Password',
+                    placeholder: 'Your password',
                     type: 'password'
                 }
             ],
@@ -45,8 +59,13 @@ export class ConnectionPage {
                 {
                     text: 'Register',
                     handler: (data) =>{
-                        if(data.Email != null && data.Password != null) {
-                            this.registerService.register(data.Email, data.Password);
+                        if(data.Name != null && data.Email != null && data.Password != null) {
+                            console.log("register");
+                            this.registerService.register(data.Name, data.Email, data.Password).subscribe(() =>{
+                                console.log("Success");
+                            }, () =>{
+                                console.log("error");
+                            });
                         }
                     }
                 },
@@ -60,10 +79,9 @@ export class ConnectionPage {
         alert.present();
     }
 
-    motPasseOublie() {
+    forgotPassword() {
         const alert = this.alertCtl.create({
-            title: 'Forget password',
-            message: 'Enter email to recover your password',
+            title: 'Forgotten password',
             inputs: [
                 {
                     name: 'email',
@@ -74,7 +92,7 @@ export class ConnectionPage {
             ],
             buttons: [
                 {
-                    text: 'Reset',
+                    text: 'Reclaim',
                     handler: (data) =>{
                         if(data.email != null) {
                             this.passwordService.forgotPassword(data.email);
@@ -88,5 +106,15 @@ export class ConnectionPage {
             ]
         });
         alert.present();
+    }
+
+    private initializeForm() {
+        this.loginForm = new FormGroup({
+            'email': new FormControl(null,Validators.compose([
+                Validators.required,
+                Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+                ])),
+            'userPassword': new FormControl(null,Validators.required)
+        });
     }
 }
