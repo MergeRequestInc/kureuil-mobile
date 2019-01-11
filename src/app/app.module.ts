@@ -11,6 +11,7 @@ import {AuthenficationServices} from "../services/authenfication.services";
 import {PasswordServices} from "../services/password.services";
 import {RegisterServices} from "../services/register.services";
 import {HomePage} from "../pages/home/home";
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import {HomePage} from "../pages/home/home";
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpClientModule
+    HttpClientModule,
+      ReactiveFormsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

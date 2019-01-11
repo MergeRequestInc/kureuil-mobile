@@ -97,7 +97,7 @@ module.exports = webpackAsyncContext;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_authenfication_services__ = __webpack_require__(200);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_password_services__ = __webpack_require__(201);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__home_home__ = __webpack_require__(100);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -149,12 +149,12 @@ var ConnectionPage = /** @class */ (function () {
                 },
                 {
                     name: 'Email',
-                    placeholder: 'Your Email',
+                    placeholder: 'Your email',
                     type: 'text'
                 },
                 {
                     name: 'Password',
-                    placeholder: 'Your Password',
+                    placeholder: 'Your password',
                     type: 'password'
                 }
             ],
@@ -220,7 +220,7 @@ var ConnectionPage = /** @class */ (function () {
     };
     ConnectionPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-connection',template:/*ion-inline-start:"/Users/uydu/Desktop/Study/Epitech/Projet Fin d'etudes/kureuil-mobile/src/pages/Connection/Connection.html"*/'<ion-header>\n  <ion-toolbar>\n      <ion-title text-center>Kureuil</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-row style="padding-top: 10%">\n    <ion-col text-center>\n      <h2 style="color: #4286f4">Connection</h2>\n    </ion-col>\n  </ion-row>\n  <div class="login-box">\n    <form [formGroup]="loginForm" (ngSubmit)="login()">\n        <ion-label color="primary">Email</ion-label>\n        <ion-item>\n          <ion-input type="text" [ngModel]="email" formControlName="email" placeholder="Enter user email"></ion-input>\n        </ion-item>\n        <ion-label color="primary" >Password</ion-label>\n        <ion-item>\n          <ion-input type="password" [ngModel]="password" formControlName="userPassword" placeholder="********"></ion-input>\n        </ion-item>\n      <button ion-button type="submit" round outline style="margin-left: 100px;">Login</button>\n    </form>\n    <ion-row>\n        <button ion-button style="border-radius: 10%;" outline block (click)="registerUser()">Register</button>\n        <button ion-button style="border-radius: 10%;" block outline (click)="forgotPassword()">I forgot my password</button>\n    </ion-row>\n  </div>\n</ion-content>\n'/*ion-inline-end:"/Users/uydu/Desktop/Study/Epitech/Projet Fin d'etudes/kureuil-mobile/src/pages/Connection/Connection.html"*/
+            selector: 'page-connection',template:/*ion-inline-start:"/Users/uydu/Desktop/Study/Epitech/Projet Fin d'etudes/kureuil-mobile/src/pages/Connection/Connection.html"*/'<ion-header>\n  <ion-toolbar>\n      <ion-title text-center>K.U.R.E.U.I.L.</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-row style="padding-top: 10%">\n    <ion-col text-center>\n      <h2 style="color: #4286f4">Connection</h2>\n    </ion-col>\n  </ion-row>\n  <div class="login-box">\n    <form [formGroup]="loginForm" (ngSubmit)="login()">\n        <ion-label color="primary">Email</ion-label>\n        <ion-item>\n          <ion-input type="text" [ngModel]="email" formControlName="email" placeholder="Email"></ion-input>\n        </ion-item>\n        <ion-label color="primary" >Password</ion-label>\n        <ion-item>\n          <ion-input type="password" [ngModel]="password" formControlName="userPassword" placeholder="********"></ion-input>\n        </ion-item>\n      <button ion-button type="submit" round outline style="margin-left: 100px;">Login</button>\n    </form>\n    <ion-row>\n        <button ion-button style="border-radius: 10%;" outline block (click)="registerUser()">Register</button>\n        <!--<button ion-button style="border-radius: 10%;" block outline (click)="forgotPassword()">I forgot my password</button>-->\n    </ion-row>\n  </div>\n</ion-content>\n'/*ion-inline-end:"/Users/uydu/Desktop/Study/Epitech/Projet Fin d'etudes/kureuil-mobile/src/pages/Connection/Connection.html"*/
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__services_authenfication_services__["a" /* AuthenficationServices */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_authenfication_services__["a" /* AuthenficationServices */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__services_register_services__["a" /* RegisterServices */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_register_services__["a" /* RegisterServices */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__services_password_services__["a" /* PasswordServices */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_password_services__["a" /* PasswordServices */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["a" /* AlertController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["f" /* NavController */]) === "function" && _e || Object])
     ], ConnectionPage);
@@ -379,12 +379,14 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_password_services__ = __webpack_require__(201);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_register_services__ = __webpack_require__(199);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_home_home__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__angular_forms__ = __webpack_require__(12);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -414,7 +416,8 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/home/home.module#HomePageModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] }
                     ]
                 }),
-                __WEBPACK_IMPORTED_MODULE_7__angular_common_http__["b" /* HttpClientModule */]
+                __WEBPACK_IMPORTED_MODULE_7__angular_common_http__["b" /* HttpClientModule */],
+                __WEBPACK_IMPORTED_MODULE_12__angular_forms__["f" /* ReactiveFormsModule */]
             ],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* IonicApp */]],
             entryComponents: [

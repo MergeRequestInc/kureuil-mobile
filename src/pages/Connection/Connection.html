@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-      <ion-title text-center>Kureuil</ion-title>
+      <ion-title text-center>K.U.R.E.U.I.L.</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -14,7 +14,7 @@
     <form [formGroup]="loginForm" (ngSubmit)="login()">
         <ion-label color="primary">Email</ion-label>
         <ion-item>
-          <ion-input type="text" [ngModel]="email" formControlName="email" placeholder="Enter user email"></ion-input>
+          <ion-input type="text" [ngModel]="email" formControlName="email" placeholder="Email"></ion-input>
         </ion-item>
         <ion-label color="primary" >Password</ion-label>
         <ion-item>
@@ -24,7 +24,7 @@
     </form>
     <ion-row>
         <button ion-button style="border-radius: 10%;" outline block (click)="registerUser()">Register</button>
-        <button ion-button style="border-radius: 10%;" block outline (click)="forgotPassword()">I forgot my password</button>
+        <!--<button ion-button style="border-radius: 10%;" block outline (click)="forgotPassword()">I forgot my password</button>-->
     </ion-row>
   </div>
 </ion-content>

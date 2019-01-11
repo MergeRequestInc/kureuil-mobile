@@ -46,12 +46,12 @@ export class ConnectionPage implements OnInit{
                 },
                 {
                     name: 'Email',
-                    placeholder: 'Your Email',
+                    placeholder: 'Your email',
                     type: 'text'
                 },
                 {
                     name: 'Password',
-                    placeholder: 'Your Password',
+                    placeholder: 'Your password',
                     type: 'password'
                 }
             ],
