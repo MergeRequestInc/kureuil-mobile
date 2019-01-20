@@ -12,12 +12,14 @@ import {PasswordServices} from "../services/password.services";
 import {RegisterServices} from "../services/register.services";
 import {HomePage} from "../pages/home/home";
 import {ReactiveFormsModule} from "@angular/forms";
+import {ForgottenPasswordPage} from "../pages/forgotten-password/forgotten-password";
 
 @NgModule({
   declarations: [
     MyApp,
       ConnectionPage,
-      HomePage
+      HomePage,
+      ForgottenPasswordPage
   ],
   imports: [
     BrowserModule,
@@ -29,7 +31,8 @@ import {ReactiveFormsModule} from "@angular/forms";
   entryComponents: [
     MyApp,
     ConnectionPage,
-      HomePage
+    HomePage,
+    ForgottenPasswordPage
   ],
   providers: [
     StatusBar,
