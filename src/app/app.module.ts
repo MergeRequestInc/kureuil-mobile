@@ -13,6 +13,7 @@ import {RegisterServices} from "../services/register.services";
 import {HomePage} from "../pages/home/home";
 import {ReactiveFormsModule} from "@angular/forms";
 import {EditChanelPage} from "../pages/edit-chanel/edit-chanel";
+import {ChanelServices} from "../services/chanel.services";
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import {EditChanelPage} from "../pages/edit-chanel/edit-chanel";
     {provide: ErrorHandler, useClass: IonicErrorHandler},
       AuthenficationServices,
       PasswordServices,
-      RegisterServices
+      RegisterServices,
+      ChanelServices
   ]
 })
 export class AppModule {}

@@ -5,7 +5,6 @@ import {PasswordServices} from "../../services/password.services";
 import {AlertController, NavController} from "ionic-angular";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {HomePage} from "../home/home";
-import {EditCanalPage} from "../edit-canal/edit-canal";
 
 @Component({
   selector: 'page-connection',

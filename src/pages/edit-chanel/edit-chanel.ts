@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {ChanelServices} from "../../services/chanel.services";
+import {NgForm} from "@angular/forms";
+import {Chanel} from "../../model/chanel";
 
 /**
  * Generated class for the EditChanelPage page.
@@ -18,7 +21,8 @@ export class EditChanelPage implements OnInit{
     chanelName: string;
     query: string;
 
-  constructor(private navCtrl: NavController,private navParams: NavParams){
+  constructor(private navCtrl: NavController,private navParams: NavParams,
+              private chanelService: ChanelServices){
 
   }
 
@@ -26,7 +30,13 @@ export class EditChanelPage implements OnInit{
     this.mode = this.navParams.get('mode');
   }
 
-    onAddChanel() {
-        this.navCtrl.pop();
+    onAddChanel(form: NgForm) {
+      const data = new Chanel(form.value.chanelName, form.value.query);
+      this.chanelService.addChanel(data).subscribe(() => {
+          console.log('Sucess');
+
+      }, (err)=> {
+          console.log(err);
+      });
     }
 }

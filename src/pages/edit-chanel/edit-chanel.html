@@ -16,7 +16,7 @@
 <ion-content padding>
   <h3 style="color: #4286f4">{{mode}} chanel</h3>
 
-  <form #f="ngForm" (ngSubmit)="onAddChanel()">
+  <form #f="ngForm" (ngSubmit)="onAddChanel(f)">
     <ion-label color="primary">Chanel's Name</ion-label>
     <ion-input [ngModel]="chanelName" type="text" name="chanelName" required></ion-input>
     <ion-label color="primary">Query</ion-label>
