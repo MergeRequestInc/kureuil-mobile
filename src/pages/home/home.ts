@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {EditChanelPage} from "../edit-chanel/edit-chanel";
 
 /**
  * Generated class for the HomePage page.
@@ -20,5 +21,10 @@ export class HomePage {
 
     logOut() {
       this.navCtrl.popToRoot();
+    }
+
+
+    onCreateCanal() {
+        this.navCtrl.push(EditChanelPage, {mode: 'New'});
     }
 }

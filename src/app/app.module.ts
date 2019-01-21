@@ -12,12 +12,14 @@ import {PasswordServices} from "../services/password.services";
 import {RegisterServices} from "../services/register.services";
 import {HomePage} from "../pages/home/home";
 import {ReactiveFormsModule} from "@angular/forms";
+import {EditChanelPage} from "../pages/edit-chanel/edit-chanel";
 
 @NgModule({
   declarations: [
     MyApp,
       ConnectionPage,
-      HomePage
+      HomePage,
+      EditChanelPage
   ],
   imports: [
     BrowserModule,
@@ -29,7 +31,8 @@ import {ReactiveFormsModule} from "@angular/forms";
   entryComponents: [
     MyApp,
     ConnectionPage,
-      HomePage
+      HomePage,
+      EditChanelPage
   ],
   providers: [
     StatusBar,
