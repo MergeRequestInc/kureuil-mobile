@@ -108,6 +108,7 @@ export class ConnectionPage implements OnInit{
         alert.present();
     }
 
+
     private initializeForm() {
         this.loginForm = new FormGroup({
             'email': new FormControl(null,Validators.compose([
