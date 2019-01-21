@@ -12,6 +12,7 @@ import {PasswordServices} from "../services/password.services";
 import {RegisterServices} from "../services/register.services";
 import {HomePage} from "../pages/home/home";
 import {ReactiveFormsModule} from "@angular/forms";
+import {ForgottenPasswordPage} from "../pages/forgotten-password/forgotten-password";
 import {EditChanelPage} from "../pages/edit-chanel/edit-chanel";
 import {ChanelServices} from "../services/chanel.services";
 
@@ -20,6 +21,8 @@ import {ChanelServices} from "../services/chanel.services";
     MyApp,
       ConnectionPage,
       HomePage,
+      ForgottenPasswordPage,
+      EditChanelPage,
       EditChanelPage
   ],
   imports: [
@@ -33,7 +36,8 @@ import {ChanelServices} from "../services/chanel.services";
     MyApp,
     ConnectionPage,
       HomePage,
-      EditChanelPage
+      EditChanelPage,
+      ForgottenPasswordPage
   ],
   providers: [
     StatusBar,

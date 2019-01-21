@@ -23,8 +23,12 @@
       <button ion-button type="submit" round outline style="margin-left: 100px;">Login</button>
     </form>
     <ion-row>
-        <button ion-button style="border-radius: 10%;" outline block (click)="registerUser()">Register</button>
-        <!--<button ion-button style="border-radius: 10%;" block outline (click)="forgotPassword()">I forgot my password</button>-->
+        <ion-col>
+            <button class="registerForgotbtn" ion-button clear (click)="registerUser()">Register</button>
+        </ion-col>
+        <ion-col>
+            <button class="registerForgotbtn" ion-button clear (click)="forgotPassword()">I forgot my password</button>
+        </ion-col>
     </ion-row>
   </div>
 </ion-content>
