@@ -1,9 +1,24 @@
+<ion-menu id="menu" [content]="mynav">
+    <ion-header style="background-color: #cccccc;">
+        <ion-toolbar>
+            <ion-title text-center>Chanels</ion-title>
+        </ion-toolbar>
+    </ion-header>
+    <ion-content>
+        <ion-list *ngFor="let chanel of chanels">
+            <button ion-button clear block (click)="onLoadChanel(chanel)">{{chanel.chanelName}}</button>
+        </ion-list>
+    </ion-content>
+</ion-menu>
 <ion-header>
-
-  <ion-navbar>
+  <ion-navbar #mynav>
     <ion-title text-center>K.U.R.E.I.L.</ion-title>
+      <ion-buttons start>
+          <button ion-button (click)="openMenu()"><ion-icon name="menu"></ion-icon></button>
+      </ion-buttons>
     <ion-buttons end>
-      <button ion-button (click)="onCreateCanal()"><ion-icon name="add"></ion-icon></button>
+
+        <button ion-button (click)="onCreateCanal()"><ion-icon name="add"></ion-icon></button>
       <!--<button ion-button (click)="logOut()" style="color: black;">Log Out</button>-->
     </ion-buttons>
   </ion-navbar>
