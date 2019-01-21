@@ -6,21 +6,26 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar hideBackButton>
     <ion-title text-center>K.U.R.E.U.I.L.</ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="back()">Back</button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <h3 style="color: #4286f4">{{mode}} chanel</h3>
+  <h3>{{mode}} chanel</h3>
 
   <form #f="ngForm" (ngSubmit)="onAddChanel(f)">
-    <ion-label color="primary">Chanel's Name</ion-label>
+    <ion-label>Chanel's Name</ion-label>
     <ion-input [ngModel]="chanelName" type="text" name="chanelName" required></ion-input>
-    <ion-label color="primary">Query</ion-label>
-    <ion-input type="text" [ngModel]="query" name="query" required></ion-input>
+    <ion-label>Query</ion-label>
+    <ion-textarea type="text" [ngModel]="query" name="query" required></ion-textarea>
+    <button text-center type="submit" ion-button color="primary" [disabled]="!f.valid">{{mode}}</button>
+    <button ion-button color="danger" [disabled]="!(mode == 'Edit')" (click)="deleteChanel()">Delete</button>
+
   </form>
-  <button text-center type="submit" ion-button color="primary" [disabled]="!f.valid">Create</button>
 </ion-content>

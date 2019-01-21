@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {IonicPage, MenuController, NavController, NavParams} from 'ionic-angular';
 import {EditChanelPage} from "../edit-chanel/edit-chanel";
 import {Chanel} from "../../model/chanel";
+import {ChanelServices} from "../../services/chanel.services";
 
 /**
  * Generated class for the HomePage page.
@@ -15,27 +16,20 @@ import {Chanel} from "../../model/chanel";
   selector: 'page-home',
   templateUrl: 'home.html',
 })
-export class HomePage implements OnInit{
+export class HomePage {
 
     chanels: Chanel[];
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, private menuCtrl: MenuController) {
+    constructor(public navCtrl: NavController, public chanelServices: ChanelServices, public navParams: NavParams, private menuCtrl: MenuController) {
     }
 
     logOut() {
       this.navCtrl.popToRoot();
     }
 
-    ngOnInit() {
-        this.chanels = [{
-            chanelName: 'Chanel 1',
-            query: 'Select'
-        },
-            {
-                chanelName: 'Chanel 2',
-                query: 'Delete'
-            }
-        ];
+    ionViewWillEnter() {
+        this.menuCtrl.close();
+        this.chanels = this.chanelServices.getChanel();
     }
 
     onCreateCanal() {
@@ -48,7 +42,8 @@ export class HomePage implements OnInit{
     }
 
 
-    onLoadChanel(chanel: Chanel){
-        console.log(chanel.chanelName);
+    onLoadChanel(chanel: Chanel, index: number){
+        this.menuCtrl.close();
+        this.navCtrl.push(EditChanelPage, {chanel: chanel,index: index, mode: 'Edit'});
     }
 }

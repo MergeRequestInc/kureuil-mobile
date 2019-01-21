@@ -1,4 +1,0 @@
-#Mon Jan 07 15:41:42 CET 2019
-base.0=/Users/uydu/Desktop/Study/Epitech/Projet Fin d'etudes/kureuil-mobile/platforms/android/app/build/intermediates/transforms/dexMerger/debug/10
-path.0=classes.dex
-renamed.0=classes.dex
