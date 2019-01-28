@@ -4,6 +4,124 @@ webpackJsonp([2],{
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__edit_chanel_edit_chanel__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_chanel_services__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_link_service__ = __webpack_require__(157);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+/**
+ * Generated class for the HomePage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var HomePage = /** @class */ (function () {
+    function HomePage(navCtrl, chanelServices, navParams, menuCtrl, actionSheetController, alertController, linkService) {
+        this.navCtrl = navCtrl;
+        this.chanelServices = chanelServices;
+        this.navParams = navParams;
+        this.menuCtrl = menuCtrl;
+        this.actionSheetController = actionSheetController;
+        this.alertController = alertController;
+        this.linkService = linkService;
+    }
+    HomePage.prototype.ngOnInit = function () {
+        this.chanels = this.chanelServices.getChanel();
+        this.chanel = this.chanels[0];
+    };
+    HomePage.prototype.logOut = function () {
+        this.navCtrl.popToRoot();
+    };
+    HomePage.prototype.ionViewWillEnter = function () {
+        this.menuCtrl.close();
+        this.chanels = this.chanelServices.getChanel();
+        this.chanel = this.chanels[0];
+    };
+    HomePage.prototype.onCreateCanal = function () {
+        var _this = this;
+        var actionSheet = this.actionSheetController.create({
+            title: 'Choose action',
+            buttons: [{
+                    text: 'Add new chanel',
+                    handler: function () {
+                        _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__edit_chanel_edit_chanel__["a" /* EditChanelPage */], { mode: 'New' });
+                    }
+                },
+                {
+                    text: 'Add new link',
+                    handler: function () {
+                        var alerCtrl = _this.alertController.create({
+                            title: "Add new link",
+                            inputs: [
+                                {
+                                    name: 'link',
+                                    type: 'text',
+                                    placeholder: 'Links'
+                                }
+                            ],
+                            buttons: [
+                                {
+                                    text: 'Add',
+                                    handler: function (data) {
+                                        _this.linkService.addLink(data.link);
+                                        console.log(_this.linkService.getLinks());
+                                    }
+                                },
+                                {
+                                    text: 'Cancel',
+                                    role: 'Cancel'
+                                }
+                            ]
+                        });
+                        alerCtrl.present();
+                    }
+                }
+            ]
+        });
+        actionSheet.present();
+    };
+    HomePage.prototype.openMenu = function () {
+        console.log(this.chanels.length);
+        this.menuCtrl.open();
+    };
+    HomePage.prototype.onLoadChanel = function (chanel, index) {
+        this.menuCtrl.close();
+        //this.navCtrl.push(EditChanelPage, {chanel: chanel,index: index, mode: 'Edit'});
+        this.chanel = chanel;
+    };
+    HomePage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-home',template:/*ion-inline-start:"/Users/uydu/Desktop/Study/Epitech/Projet Fin d'etudes/kureuil-mobile/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar hideBackButton #mynav>\n    <ion-title text-center>K.U.R.E.I.L.</ion-title>\n      <ion-buttons start>\n          <button ion-button (click)="openMenu()"><ion-icon name="menu"></ion-icon></button>\n      </ion-buttons>\n    <ion-buttons end>\n        <button ion-button (click)="onCreateCanal()"><ion-icon name="add"></ion-icon></button>\n      <!--<button ion-button (click)="logOut()" style="color: black;">Log Out</button>-->\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-menu id="menu" [content]="mynav">\n    <ion-header>\n        <ion-toolbar>\n            <ion-title text-center>Chanels</ion-title>\n        </ion-toolbar>\n    </ion-header>\n    <ion-content>\n        <ion-list *ngFor="let chanel of chanels; let i = index;">\n            <button ion-button clear block (click)="onLoadChanel(chanel, i)">{{chanel.chanelName}}</button>\n        </ion-list>\n    </ion-content>\n</ion-menu>\n\n<ion-content padding>\n    <h3>Welcome to K.U.R.E.U.I.L. application !</h3>\n    <!--<ion-list *ngFor="let chanel of chanels">\n        <ion-card>\n            <ion-card-header>\n                {{chanel.chanelName}}\n            </ion-card-header>\n            <ion-card-content>\n                {{chanel.query}}\n            </ion-card-content>\n        </ion-card>\n    </ion-list>-->\n    <ion-card class="links">\n        <ion-card-header class="ChanelHeader">\n            {{chanel.chanelName}}\n        </ion-card-header>\n        <ion-card-content>\n            <a href="{{chanel.query}}">{{chanel.query}}</a>\n        </ion-card-content>\n    </ion-card>\n</ion-content>\n'/*ion-inline-end:"/Users/uydu/Desktop/Study/Epitech/Projet Fin d'etudes/kureuil-mobile/src/pages/home/home.html"*/,
+        }),
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__services_chanel_services__["a" /* ChanelServices */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_chanel_services__["a" /* ChanelServices */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* MenuController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* MenuController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* ActionSheetController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* ActionSheetController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_4__services_link_service__["a" /* LinkService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_link_service__["a" /* LinkService */]) === "function" && _g || Object])
+    ], HomePage);
+    return HomePage;
+    var _a, _b, _c, _d, _e, _f, _g;
+}());
+
+//# sourceMappingURL=home.js.map
+
+/***/ }),
+
+/***/ 102:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EditChanelPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(32);
@@ -94,118 +212,6 @@ var EditChanelPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 102:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__edit_chanel_edit_chanel__ = __webpack_require__(101);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_chanel_services__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_link_service__ = __webpack_require__(157);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-/**
- * Generated class for the HomePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-var HomePage = /** @class */ (function () {
-    function HomePage(navCtrl, chanelServices, navParams, menuCtrl, actionSheetController, alertController, linkService) {
-        this.navCtrl = navCtrl;
-        this.chanelServices = chanelServices;
-        this.navParams = navParams;
-        this.menuCtrl = menuCtrl;
-        this.actionSheetController = actionSheetController;
-        this.alertController = alertController;
-        this.linkService = linkService;
-    }
-    HomePage.prototype.logOut = function () {
-        this.navCtrl.popToRoot();
-    };
-    HomePage.prototype.ionViewWillEnter = function () {
-        this.menuCtrl.close();
-        this.chanels = this.chanelServices.getChanel();
-    };
-    HomePage.prototype.onCreateCanal = function () {
-        var _this = this;
-        var actionSheet = this.actionSheetController.create({
-            title: 'Choose action',
-            buttons: [{
-                    text: 'Add new chanel',
-                    handler: function () {
-                        _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__edit_chanel_edit_chanel__["a" /* EditChanelPage */], { mode: 'New' });
-                    }
-                },
-                {
-                    text: 'Add new link',
-                    handler: function () {
-                        var alerCtrl = _this.alertController.create({
-                            title: "Add new link",
-                            inputs: [
-                                {
-                                    name: 'link',
-                                    type: 'text',
-                                    placeholder: 'Links'
-                                }
-                            ],
-                            buttons: [
-                                {
-                                    text: 'Add',
-                                    handler: function (data) {
-                                        _this.linkService.addLink(data.link);
-                                        console.log(_this.linkService.getLinks());
-                                    }
-                                },
-                                {
-                                    text: 'Cancel',
-                                    role: 'Cancel'
-                                }
-                            ]
-                        });
-                        alerCtrl.present();
-                    }
-                }
-            ]
-        });
-        actionSheet.present();
-    };
-    HomePage.prototype.openMenu = function () {
-        console.log(this.chanels.length);
-        this.menuCtrl.open();
-    };
-    HomePage.prototype.onLoadChanel = function (chanel, index) {
-        this.menuCtrl.close();
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__edit_chanel_edit_chanel__["a" /* EditChanelPage */], { chanel: chanel, index: index, mode: 'Edit' });
-    };
-    HomePage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"/Users/uydu/Desktop/Study/Epitech/Projet Fin d'etudes/kureuil-mobile/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar hideBackButton #mynav>\n    <ion-title text-center>K.U.R.E.I.L.</ion-title>\n      <ion-buttons start>\n          <button ion-button (click)="openMenu()"><ion-icon name="menu"></ion-icon></button>\n      </ion-buttons>\n    <ion-buttons end>\n        <button ion-button (click)="onCreateCanal()"><ion-icon name="add"></ion-icon></button>\n      <!--<button ion-button (click)="logOut()" style="color: black;">Log Out</button>-->\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-menu id="menu" [content]="mynav">\n    <ion-header>\n        <ion-toolbar>\n            <ion-title text-center>Chanels</ion-title>\n        </ion-toolbar>\n    </ion-header>\n    <ion-content>\n        <ion-list *ngFor="let chanel of chanels; let i = index;">\n            <button ion-button clear block (click)="onLoadChanel(chanel, i)">{{chanel.chanelName}}</button>\n        </ion-list>\n    </ion-content>\n</ion-menu>\n\n<ion-content padding>\n    <h3>Welcome to K.U.R.E.U.I.L. application !</h3>\n    <ion-list *ngFor="let chanel of chanels">\n        <ion-card>\n            <ion-card-header>\n                {{chanel.chanelName}}\n            </ion-card-header>\n            <ion-card-content>\n                {{chanel.query}}\n            </ion-card-content>\n        </ion-card>\n    </ion-list>\n</ion-content>\n'/*ion-inline-end:"/Users/uydu/Desktop/Study/Epitech/Projet Fin d'etudes/kureuil-mobile/src/pages/home/home.html"*/,
-        }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__services_chanel_services__["a" /* ChanelServices */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_chanel_services__["a" /* ChanelServices */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* MenuController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* MenuController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* ActionSheetController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* ActionSheetController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_4__services_link_service__["a" /* LinkService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_link_service__["a" /* LinkService */]) === "function" && _g || Object])
-    ], HomePage);
-    return HomePage;
-    var _a, _b, _c, _d, _e, _f, _g;
-}());
-
-//# sourceMappingURL=home.js.map
-
-/***/ }),
-
 /***/ 114:
 /***/ (function(module, exports) {
 
@@ -228,11 +234,11 @@ webpackEmptyAsyncContext.id = 114;
 
 var map = {
 	"../pages/edit-chanel/edit-chanel.module": [
-		282,
+		283,
 		1
 	],
 	"../pages/home/home.module": [
-		283,
+		282,
 		0
 	]
 };
@@ -308,7 +314,7 @@ var LinkService = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_password_services__ = __webpack_require__(204);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__home_home__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__home_home__ = __webpack_require__(101);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -589,9 +595,9 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_authenfication_services__ = __webpack_require__(203);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_password_services__ = __webpack_require__(204);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_register_services__ = __webpack_require__(202);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_home_home__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_home_home__ = __webpack_require__(101);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__angular_forms__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_edit_chanel_edit_chanel__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_edit_chanel_edit_chanel__ = __webpack_require__(102);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__services_chanel_services__ = __webpack_require__(78);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_link_service__ = __webpack_require__(157);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -631,8 +637,8 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* MyApp */], {}, {
                     links: [
-                        { loadChildren: '../pages/edit-chanel/edit-chanel.module#EditChanelPageModule', name: 'EditChanelPage', segment: 'edit-chanel', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/home/home.module#HomePageModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/home/home.module#HomePageModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/edit-chanel/edit-chanel.module#EditChanelPageModule', name: 'EditChanelPage', segment: 'edit-chanel', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_7__angular_common_http__["b" /* HttpClientModule */],

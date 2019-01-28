@@ -27,7 +27,7 @@
 
 <ion-content padding>
     <h3>Welcome to K.U.R.E.U.I.L. application !</h3>
-    <ion-list *ngFor="let chanel of chanels">
+    <!--<ion-list *ngFor="let chanel of chanels">
         <ion-card>
             <ion-card-header>
                 {{chanel.chanelName}}
@@ -36,5 +36,13 @@
                 {{chanel.query}}
             </ion-card-content>
         </ion-card>
-    </ion-list>
+    </ion-list>-->
+    <ion-card class="links">
+        <ion-card-header class="ChanelHeader">
+            {{chanel.chanelName}}
+        </ion-card-header>
+        <ion-card-content>
+            <a href="{{chanel.query}}">{{chanel.query}}</a>
+        </ion-card-content>
+    </ion-card>
 </ion-content>

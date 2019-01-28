@@ -24,14 +24,20 @@ import {LinkService} from "../../services/link.service";
   selector: 'page-home',
   templateUrl: 'home.html',
 })
-export class HomePage {
+export class HomePage implements OnInit{
 
     chanels: Chanel[];
+    chanel: Chanel;
 
     constructor(public navCtrl: NavController, public chanelServices: ChanelServices,
                 public navParams: NavParams, private menuCtrl: MenuController,
                 public actionSheetController: ActionSheetController,
                 public alertController: AlertController, public linkService: LinkService) {
+    }
+
+    ngOnInit() {
+        this.chanels = this.chanelServices.getChanel();
+        this.chanel = this.chanels[0];
     }
 
     logOut() {
@@ -41,6 +47,7 @@ export class HomePage {
     ionViewWillEnter() {
         this.menuCtrl.close();
         this.chanels = this.chanelServices.getChanel();
+        this.chanel = this.chanels[0];
     }
 
     onCreateCanal() {
@@ -94,6 +101,7 @@ export class HomePage {
 
     onLoadChanel(chanel: Chanel, index: number){
         this.menuCtrl.close();
-        this.navCtrl.push(EditChanelPage, {chanel: chanel,index: index, mode: 'Edit'});
+        //this.navCtrl.push(EditChanelPage, {chanel: chanel,index: index, mode: 'Edit'});
+        this.chanel = chanel;
     }
 }

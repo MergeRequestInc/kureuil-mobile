@@ -25723,3 +25723,14 @@ ion-textarea {
 ion-buttons {
   color: black;
 }
+
+.links {
+  min-height: 600px;
+  background-color: white;
+}
+
+.ChanelHeader {
+  font-size: 30px;
+  font-family: "Arial", "Roboto", "Helvetica Neue", sans-serif;
+  text-align: center;
+}
