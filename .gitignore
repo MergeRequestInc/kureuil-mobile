@@ -6,3 +6,4 @@ www/asserts/
 www/asserts/index.html
 www/asserts/service-worker.js
 www/asserts/manifest.json
+plugins/
