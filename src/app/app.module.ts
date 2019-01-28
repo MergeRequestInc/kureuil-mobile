@@ -15,13 +15,15 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {EditChanelPage} from "../pages/edit-chanel/edit-chanel";
 import {ChanelServices} from "../services/chanel.services";
 import {LinkService} from "../services/link.service";
+import {SearchPage} from "../pages/search/search";
 
 @NgModule({
   declarations: [
     MyApp,
       ConnectionPage,
       HomePage,
-      EditChanelPage
+      EditChanelPage,
+      SearchPage
   ],
   imports: [
     BrowserModule,
@@ -34,7 +36,8 @@ import {LinkService} from "../services/link.service";
     MyApp,
     ConnectionPage,
       HomePage,
-      EditChanelPage
+      EditChanelPage,
+      SearchPage
   ],
   providers: [
     StatusBar,

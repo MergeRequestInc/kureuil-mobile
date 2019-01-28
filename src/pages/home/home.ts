@@ -11,6 +11,7 @@ import {EditChanelPage} from "../edit-chanel/edit-chanel";
 import {Chanel} from "../../model/chanel";
 import {ChanelServices} from "../../services/chanel.services";
 import {LinkService} from "../../services/link.service";
+import {SearchPage} from "../search/search";
 
 /**
  * Generated class for the HomePage page.
@@ -103,5 +104,9 @@ export class HomePage implements OnInit{
         this.menuCtrl.close();
         //this.navCtrl.push(EditChanelPage, {chanel: chanel,index: index, mode: 'Edit'});
         this.chanel = chanel;
+    }
+
+    openSearch() {
+        this.navCtrl.push(SearchPage);
     }
 }

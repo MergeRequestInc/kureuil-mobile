@@ -2,10 +2,11 @@
   <ion-navbar hideBackButton #mynav>
     <ion-title text-center>K.U.R.E.I.L.</ion-title>
       <ion-buttons start>
-          <button ion-button (click)="openMenu()"><ion-icon name="menu"></ion-icon></button>
+          <button ion-button icon-only (click)="openMenu()"><ion-icon name="menu"></ion-icon></button>
       </ion-buttons>
     <ion-buttons end>
-        <button ion-button (click)="onCreateCanal()"><ion-icon name="add"></ion-icon></button>
+        <button ion-button icon-only (click)="openSearch()"><ion-icon name="search"></ion-icon></button>
+        <button ion-button icon-only (click)="onCreateCanal()"><ion-icon name="add"></ion-icon></button>
       <!--<button ion-button (click)="logOut()" style="color: black;">Log Out</button>-->
     </ion-buttons>
   </ion-navbar>
