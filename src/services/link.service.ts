@@ -2,6 +2,7 @@ import {Injectable} from "@angular/core";
 import {Chanel} from "../model/chanel";
 import {HttpClient} from "@angular/common/http";
 import {query} from "@angular/animations";
+import {Link} from "../model/link";
 
 @Injectable()
 export class LinkService {
@@ -12,7 +13,7 @@ export class LinkService {
     /*
     Add link
      */
-    addLink(link: string) {
+    addLink(link: Link) {
         return this.http.post('localhost:8080/' + 'links', link);
 
     }

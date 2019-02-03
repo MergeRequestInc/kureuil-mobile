@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
 import {ChanelServices} from "../../services/chanel.services";
 import {NgForm} from "@angular/forms";
 import {Chanel} from "../../model/chanel";
@@ -24,7 +24,7 @@ export class EditChanelPage{
     index: number;
 
   constructor(private navCtrl: NavController,private navParams: NavParams,
-              private chanelService: ChanelServices){
+              private chanelService: ChanelServices, public toastCtrl: ToastController){
 
   }
 
@@ -50,13 +50,27 @@ export class EditChanelPage{
           //     console.log(err);
           // });
       } else {
-          this.chanelService.editChanel(data,this.index);
+          //this.chanelService.editChanel(data,this.index);
           // this.chanelService.editChanel(data).subscribe(() => {
           //     console.log('successfully updated chanel');
           //
           // }, (err)=> {
           //     console.log(err);
           // });
+          this.chanelService.addChanel(data).subscribe(() => {
+              const toast = this.toastCtrl.create({
+                 position: 'top',
+                 message: 'Create link successfully'
+              });
+              toast.present();
+          }, (err) => {
+              const toast = this.toastCtrl.create({
+                  position: 'top',
+                  message: 'Create link failed with' + err
+              });
+              toast.present();
+          });
+
       }
         this.navCtrl.pop();
     }
@@ -68,7 +82,17 @@ export class EditChanelPage{
           // }, (error) => {
           //     console.log(error);
           // });
-          this.chanelService.deleteChanel(this.chanelDelete,this.index);
+          this.chanelService.deleteChanel(this.index).subscribe(() => {
+              const toast = this.toastCtrl.create({
+                  position: 'top',
+                  message: 'Delete link successfully'
+              });
+          }, (err)=> {
+              const toast = this.toastCtrl.create({
+                  position: 'top',
+                  message: 'Delete link failed' + err
+              });
+          }) ;
       }
     }
 

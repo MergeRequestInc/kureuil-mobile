@@ -5,13 +5,15 @@ import {
     IonicPage,
     MenuController,
     NavController,
-    NavParams
+    NavParams, ToastController
 } from 'ionic-angular';
 import {EditChanelPage} from "../edit-chanel/edit-chanel";
 import {Chanel} from "../../model/chanel";
 import {ChanelServices} from "../../services/chanel.services";
 import {LinkService} from "../../services/link.service";
 import {SearchPage} from "../search/search";
+import {Link} from "../../model/link";
+import {Tag} from "../../model/tag";
 
 /**
  * Generated class for the HomePage page.
@@ -27,18 +29,22 @@ import {SearchPage} from "../search/search";
 })
 export class HomePage implements OnInit{
 
-    chanels: Chanel[];
-    chanel: Chanel;
+    channels: Chanel[];
 
     constructor(public navCtrl: NavController, public chanelServices: ChanelServices,
                 public navParams: NavParams, private menuCtrl: MenuController,
                 public actionSheetController: ActionSheetController,
-                public alertController: AlertController, public linkService: LinkService) {
+                public alertController: AlertController, public linkService: LinkService,
+                public chanelService: ChanelServices, public toastCtrl: ToastController) {
     }
 
     ngOnInit() {
-        this.chanels = this.chanelServices.getChanel();
-        this.chanel = this.chanels[0];
+        this.channels = [{chanelName: 'Test', query: 'query'}];
+        this.chanelService.getChanel().subscribe((data) => {
+            this.channels = data;
+        }, () => {
+            console.log("No Chanel Found");
+        });
     }
 
     logOut() {
@@ -47,8 +53,11 @@ export class HomePage implements OnInit{
 
     ionViewWillEnter() {
         this.menuCtrl.close();
-        this.chanels = this.chanelServices.getChanel();
-        this.chanel = this.chanels[0];
+        this.chanelService.getChanel().subscribe((data) => {
+            this.channels = data;
+        }, () => {
+            console.log("No Chanel Found");
+        })
     }
 
     onCreateCanal() {
@@ -67,17 +76,39 @@ export class HomePage implements OnInit{
                             title: "Add new link",
                             inputs: [
                                 {
+                                  name: 'id',
+                                  type: 'text',
+                                  placeholder: 'Id'
+                                },
+                                {
                                     name: 'link',
                                     type: 'text',
                                     placeholder: 'Links'
+                                }, {
+                                    name: 'tag',
+                                    type: 'text',
+                                    placeholder: 'Create tags, separate by,'
                                 }
                             ],
                             buttons: [
                                 {
                                     text: 'Add',
                                     handler: (data) => {
-                                        this.linkService.addLink(data.link);
-                                        console.log(this.linkService.getLinks());
+                                        const tag = data.tag.split(",");
+                                        const tags : Tag[] = [];
+                                        tags.push(...tag);
+                                        const dataAdd = new Link(data.id, data.link,tags);
+                                        this.linkService.addLink(dataAdd).subscribe(() => {
+                                            const toast = this.toastCtrl.create({
+                                                position: 'top',
+                                                message: 'Link data added succesfully'
+                                            });
+                                        }, (err) =>{
+                                            const toast = this.toastCtrl.create({
+                                                position: 'top',
+                                                message: 'Link data failed with ' + err
+                                            });
+                                        });
                                     }
                                 },
                                 {
@@ -95,15 +126,15 @@ export class HomePage implements OnInit{
     }
 
     openMenu() {
-        console.log(this.chanels.length);
+        console.log(this.channels.length);
         this.menuCtrl.open();
     }
 
 
     onLoadChanel(chanel: Chanel, index: number){
         this.menuCtrl.close();
-        //this.navCtrl.push(EditChanelPage, {chanel: chanel,index: index, mode: 'Edit'});
-        this.chanel = chanel;
+        this.navCtrl.push(EditChanelPage, {chanel: chanel,index: index, mode: 'Edit'});
+        //this.chanel = chanel;
     }
 
     openSearch() {

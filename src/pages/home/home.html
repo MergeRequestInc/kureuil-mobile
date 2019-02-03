@@ -5,7 +5,7 @@
           <button ion-button icon-only (click)="openMenu()"><ion-icon name="menu"></ion-icon></button>
       </ion-buttons>
     <ion-buttons end>
-        <button ion-button icon-only (click)="openSearch()"><ion-icon name="search"></ion-icon></button>
+        <!--<button ion-button icon-only (click)="openSearch()"><ion-icon name="search"></ion-icon></button> -->
         <button ion-button icon-only (click)="onCreateCanal()"><ion-icon name="add"></ion-icon></button>
       <!--<button ion-button (click)="logOut()" style="color: black;">Log Out</button>-->
     </ion-buttons>
@@ -20,7 +20,7 @@
         </ion-toolbar>
     </ion-header>
     <ion-content>
-        <ion-list *ngFor="let chanel of chanels; let i = index;">
+        <ion-list *ngFor="let chanel of channels; let i = index;">
             <button ion-button clear block (click)="onLoadChanel(chanel, i)">{{chanel.chanelName}}</button>
         </ion-list>
     </ion-content>
@@ -28,7 +28,7 @@
 
 <ion-content padding>
     <h3>Welcome to K.U.R.E.U.I.L. application !</h3>
-    <!--<ion-list *ngFor="let chanel of chanels">
+    <!--<ion-list *ngFor="let chanel of channels">
         <ion-card>
             <ion-card-header>
                 {{chanel.chanelName}}
@@ -38,7 +38,7 @@
             </ion-card-content>
         </ion-card>
     </ion-list>-->
-    <ion-card class="links">
+    <ion-card class="links" *ngFor="let chanel of channels">
         <ion-card-header class="ChanelHeader">
             {{chanel.chanelName}}
         </ion-card-header>
