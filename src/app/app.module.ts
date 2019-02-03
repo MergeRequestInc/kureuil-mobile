@@ -15,6 +15,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {ForgottenPasswordPage} from "../pages/forgotten-password/forgotten-password";
 import {EditChanelPage} from "../pages/edit-chanel/edit-chanel";
 import {ChanelServices} from "../services/chanel.services";
+import {LinkService} from "../services/link.service";
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import {ChanelServices} from "../services/chanel.services";
       AuthenficationServices,
       PasswordServices,
       RegisterServices,
-      ChanelServices
+      ChanelServices,
+      LinkService
   ]
 })
 export class AppModule {}
