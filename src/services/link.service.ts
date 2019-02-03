@@ -14,14 +14,14 @@ export class LinkService {
     Add link
      */
     addLink(link: Link) {
-        return this.http.post('localhost:8080/' + 'links', link);
+        return this.http.post('localhost:8080/' + 'links', link,{responseType: 'text'});
 
     }
 
     /*
     Get links
      */
-    getLinks() {
+    getLinks(query: string) {
         return this.http.get<string[]>('localhost:8080/' + 'links/' + query);
 
     }
@@ -30,7 +30,7 @@ export class LinkService {
     Delete link
      */
     deleteLink(link: string, index: number){
-        return this.http.delete('localhost:8080/' + 'links/' + index);
+        return this.http.delete('localhost:8080/' + 'links/' + index,{responseType: 'text'});
 
     }
 
@@ -38,6 +38,11 @@ export class LinkService {
     Update link
      */
     updateLink(link: string){
-        return this.http.put('localhost:/8080/' + 'links', link);
+        return this.http.put('localhost:/8080/' + 'links', link, {responseType: 'text'});
+    }
+
+    getLinkById(id: number){
+        return this.http.get<Link>( 'localhost:8080/' + 'links/' + id);
+
     }
 }

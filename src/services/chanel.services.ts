@@ -21,7 +21,7 @@ export class ChanelServices {
      * @param channel : channel to create
      */
     addChanel(channel: Chanel) {
-        return this.http.post('localhost:8080/' + 'channels', channel);
+        return this.http.post('localhost:8080/' + 'channels', channel, {responseType: 'text'});
     }
 
     /**
@@ -29,7 +29,7 @@ export class ChanelServices {
      * @param channel : channel to update
      */
     editChanel (channel: Chanel) {
-        return this.http.put('localhost:8080/' + 'channels', channel);
+        return this.http.put('localhost:8080/' + 'channels', channel, {responseType: 'text'});
     }
 
     /**
@@ -37,13 +37,13 @@ export class ChanelServices {
      * @param id : channel's id to delete
      */
     deleteChanel (id: number) {
-        return this.http.delete('localhost:8080/' + 'channels/' + id);
+        return this.http.delete('localhost:8080/' + 'channels/' + id, {responseType: 'text'});
     }
 
     /**
      * Get user's channels
      */
-    loadChannelsByUser() {
+    loadUserChanel() {
         return this.http.get<Chanel[]>('localhost:8080/' + 'channels/user');
     }
 }
