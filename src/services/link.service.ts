@@ -1,28 +1,42 @@
 import {Injectable} from "@angular/core";
 import {Chanel} from "../model/chanel";
+import {HttpClient} from "@angular/common/http";
+import {query} from "@angular/animations";
 
 @Injectable()
 export class LinkService {
-    private links : string[] = [];
+    constructor(public http: HttpClient){
+
+    }
 
     /*
     Add link
      */
-    addLink(url: string) {
-        this.links.push(url);
+    addLink(link: string) {
+        return this.http.post('localhost:8080/' + 'links', link);
+
     }
 
     /*
     Get links
      */
     getLinks() {
-        return this.links.slice();
+        return this.http.get<string[]>('localhost:8080/' + 'links/' + query);
+
     }
 
     /*
     Delete link
      */
     deleteLink(link: string, index: number){
-        this.links.splice(index,1);
+        return this.http.delete('localhost:8080/' + 'links/' + index);
+
+    }
+
+    /*
+    Update link
+     */
+    updateLink(link: string){
+        return this.http.put('localhost:/8080/' + 'links', link);
     }
 }
