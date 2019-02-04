@@ -103,6 +103,12 @@ export class HomePage implements OnInit{
                                                 position: 'top',
                                                 message: 'Link data added succesfully'
                                             });
+                                            toast.present();
+                                            this.chanelService.getChanel().subscribe((data) => {
+                                                this.channels = data;
+                                            }, () => {
+                                                console.log("No Chanel Found");
+                                            });
                                         }, (err) =>{
                                             const toast = this.toastCtrl.create({
                                                 position: 'top',
