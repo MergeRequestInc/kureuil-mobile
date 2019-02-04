@@ -39,7 +39,7 @@ export class HomePage implements OnInit{
     }
 
     ngOnInit() {
-        this.channels = [{chanelName: 'Test', query: 'query'}];
+        this.channels = [{id: 1, chanelName: 'Test', query: 'query'}];
         this.chanelService.getChanel().subscribe((data) => {
             this.channels = data;
         }, () => {
@@ -139,7 +139,7 @@ export class HomePage implements OnInit{
 
     onLoadChanel(chanel: Chanel, index: number){
         this.menuCtrl.close();
-        this.navCtrl.push(EditChanelPage, {chanel: chanel,index: index, mode: 'Edit'});
+        this.navCtrl.push(EditChanelPage, {chanel: chanel,index: chanel.id, mode: 'Edit'});
         //this.chanel = chanel;
     }
 

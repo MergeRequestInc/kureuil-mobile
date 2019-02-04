@@ -18,6 +18,7 @@ import {Chanel} from "../../model/chanel";
 })
 export class EditChanelPage{
     mode: string;
+    chanelId: number;
     chanelName: string;
     query: string;
     chanelDelete: Chanel = null;
@@ -39,7 +40,7 @@ export class EditChanelPage{
   }
 
     onAddChanel(form: NgForm) {
-      const data = new Chanel(form.value.chanelName, form.value.query);
+      const data = new Chanel(form.value.chanelId, form.value.chanelName, form.value.query);
       console.log(data);
       if(this.mode == 'New'){
           this.chanelService.addChanel(data);

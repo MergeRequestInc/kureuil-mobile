@@ -20,6 +20,8 @@
   <h3>{{mode}} chanel</h3>
 
   <form #f="ngForm" (ngSubmit)="onAddChanel(f)">
+    <ion-label>Id</ion-label>
+    <ion-input [ngModel]="chanelId" type="number" name="chanelId" required></ion-input>
     <ion-label>Chanel's Name</ion-label>
     <ion-input [ngModel]="chanelName" type="text" name="chanelName" required></ion-input>
     <ion-label>Query</ion-label>

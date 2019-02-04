@@ -1,3 +1,3 @@
 export class Chanel {
-    constructor(public chanelName: string, public query: string){}
+    constructor(public id: number, public chanelName: string, public query: string){}
 }
