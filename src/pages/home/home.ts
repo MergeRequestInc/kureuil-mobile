@@ -14,6 +14,7 @@ import {LinkService} from "../../services/link.service";
 import {SearchPage} from "../search/search";
 import {Link} from "../../model/link";
 import {Tag} from "../../model/tag";
+import {EditLinkPage} from "../edit-link/edit-link";
 
 /**
  * Generated class for the HomePage page.
@@ -30,7 +31,8 @@ import {Tag} from "../../model/tag";
 export class HomePage implements OnInit{
 
     channels: Chanel[];
-
+    links : Link[] = [];
+    i = 0;
     constructor(public navCtrl: NavController, public chanelServices: ChanelServices,
                 public navParams: NavParams, private menuCtrl: MenuController,
                 public actionSheetController: ActionSheetController,
@@ -46,6 +48,11 @@ export class HomePage implements OnInit{
         //     console.log("No Chanel Found");
         // });
         //this.loadAllChannels();
+        for(;this.i < 10;this.i++){
+            const tag = new Tag("abc");
+            const link = new Link(1,"url" + this.i,[tag,tag,tag,tag,tag]);
+            this.links.push(link);
+        }
     }
 
     logOut() {
@@ -156,5 +163,9 @@ export class HomePage implements OnInit{
         this.chanelService.loadUserChanel().subscribe( channels => {
             this.channels = channels;
         });
+    }
+
+    onLoadTag(link: Link) {
+        this.navCtrl.push(EditLinkPage, {'link': link});
     }
 }

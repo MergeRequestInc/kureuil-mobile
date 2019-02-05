@@ -43,7 +43,9 @@
             {{chanel.chanelName}}
         </ion-card-header>
         <ion-card-content>
-            <a href="{{chanel.query}}">{{chanel.query}}</a>
+            <ion-list *ngFor="let link of links">
+                <button ion-button clear (click)="onLoadTag(link)">{{link.url}}</button>
+            </ion-list>
         </ion-card-content>
     </ion-card>
 </ion-content>

@@ -16,6 +16,7 @@ import {EditChanelPage} from "../pages/edit-chanel/edit-chanel";
 import {ChanelServices} from "../services/chanel.services";
 import {LinkService} from "../services/link.service";
 import {SearchPage} from "../pages/search/search";
+import {EditLinkPage} from "../pages/edit-link/edit-link";
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {SearchPage} from "../pages/search/search";
       ConnectionPage,
       HomePage,
       EditChanelPage,
-      SearchPage
+      SearchPage,
+      EditLinkPage
   ],
   imports: [
     BrowserModule,
@@ -37,7 +39,8 @@ import {SearchPage} from "../pages/search/search";
     ConnectionPage,
       HomePage,
       EditChanelPage,
-      SearchPage
+      SearchPage,
+      EditLinkPage
   ],
   providers: [
     StatusBar,
