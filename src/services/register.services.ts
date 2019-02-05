@@ -1,6 +1,6 @@
 import {HttpClient} from "@angular/common/http";
 import {Injectable} from "@angular/core";
-import {SERVER_API_URL} from "../constrant/variables.constrant";
+import {SERVER_API_URL} from "../services-common/constrant/variables.constrant";
 
 @Injectable()
 export class RegisterServices {

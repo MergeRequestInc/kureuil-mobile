@@ -4,7 +4,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { ConnectionPage } from '../pages/Connection/Connection';
-import {Chanel} from "../model/chanel";
 @Component({
   templateUrl: 'app.html'
 })

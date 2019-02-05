@@ -3,7 +3,7 @@ import {Chanel} from "../model/chanel";
 import {HttpClient} from "@angular/common/http";
 import {query} from "@angular/animations";
 import {Link} from "../model/link";
-import {SERVER_API_URL} from "../constrant/variables.constrant";
+import {SERVER_API_URL} from "../services-common/constrant/variables.constrant";
 
 @Injectable()
 export class LinkService {

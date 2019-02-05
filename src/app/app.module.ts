@@ -6,7 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import {ConnectionPage} from "../pages/Connection/Connection";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {AuthenficationServices} from "../services/authenfication.services";
 import {PasswordServices} from "../services/password.services";
 import {RegisterServices} from "../services/register.services";
@@ -17,6 +17,9 @@ import {ChanelServices} from "../services/chanel.services";
 import {LinkService} from "../services/link.service";
 import {SearchPage} from "../pages/search/search";
 import {EditLinkPage} from "../pages/edit-link/edit-link";
+import {AuthInterceptor} from "../services-common/interceptor/auth.interceptor";
+import {AuthExpiredInterceptor} from "../services-common/interceptor/auth-expired.interceptor";
+import {IonicStorageModule} from "@ionic/storage";
 
 @NgModule({
   declarations: [
@@ -30,8 +33,9 @@ import {EditLinkPage} from "../pages/edit-link/edit-link";
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpClientModule,
-      ReactiveFormsModule
+      IonicStorageModule.forRoot(),
+      HttpClientModule,
+      ReactiveFormsModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -50,7 +54,17 @@ import {EditLinkPage} from "../pages/edit-link/edit-link";
       PasswordServices,
       RegisterServices,
       ChanelServices,
-      LinkService
+      LinkService,
+      {
+          provide: HTTP_INTERCEPTORS,
+          useClass: AuthInterceptor,
+          multi: true
+      },
+      {
+          provide: HTTP_INTERCEPTORS,
+          useClass: AuthExpiredInterceptor,
+          multi: true
+      }
   ]
 })
 export class AppModule {}

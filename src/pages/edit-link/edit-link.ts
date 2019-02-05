@@ -31,6 +31,7 @@ export class EditLinkPage implements OnInit{
         this.linkUrl = this.linkSelected.url;
     }
   }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad EditLinkPage');
   }

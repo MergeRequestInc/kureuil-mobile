@@ -48,11 +48,6 @@ export class HomePage implements OnInit{
         //     console.log("No Chanel Found");
         // });
         //this.loadAllChannels();
-        for(;this.i < 10;this.i++){
-            const tag = new Tag("abc");
-            const link = new Link(1,"url" + this.i,[tag,tag,tag,tag,tag]);
-            this.links.push(link);
-        }
     }
 
     logOut() {
@@ -61,6 +56,11 @@ export class HomePage implements OnInit{
 
     ionViewWillEnter() {
         this.menuCtrl.close();
+        for(;this.i < 10;this.i++){
+            const tag = new Tag("abc");
+            const link = new Link(1,"url" + this.i,[tag,tag,tag,tag,tag]);
+            this.links.push(link);
+        }
         // this.chanelService.getChanel().subscribe((data) => {
         //     this.channels = data;
         // }, () => {
@@ -123,6 +123,7 @@ export class HomePage implements OnInit{
                                                 position: 'top',
                                                 message: 'Link data failed with ' + err
                                             });
+                                            toast.present();
                                         });
                                     }
                                 },

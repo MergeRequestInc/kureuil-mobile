@@ -2,9 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {RegisterServices} from "../../services/register.services";
 import {AuthenficationServices} from "../../services/authenfication.services";
 import {PasswordServices} from "../../services/password.services";
-import {AlertController, NavController} from "ionic-angular";
+import {AlertController, NavController, ToastController} from "ionic-angular";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {HomePage} from "../home/home";
+import {Storage} from "@ionic/storage";
 
 @Component({
   selector: 'page-connection',
@@ -15,21 +16,40 @@ export class ConnectionPage implements OnInit{
     password: string;
     loginForm: FormGroup;
 
-    constructor(private authenService: AuthenficationServices,
+    constructor(private authenService: AuthenficationServices, private sessionStorage: Storage, private toastCtrl: ToastController,
                 private registerService: RegisterServices, private passwordService: PasswordServices,
-                private alertCtl: AlertController, private navCtrl: NavController) {
+                private alertCtl: AlertController, private navCtrl: NavController, private localStorage: Storage) {
     }
 
     ngOnInit() {
         this.initializeForm();
+        this.authenService.logout();
+
     }
 
     login() {
-        this.authenService.login(this.loginForm.value.email, this.loginForm.value.userPassword).subscribe((text)=>{
+        this.authenService.login(this.loginForm.value.email, this.loginForm.value.userPassword).subscribe((response)=>{
             //console.log("OK");
+            this.localStorage.set('isLoggedIn', 'true');
+            this.localStorage.set('Authorization', response.body['access-token']);
+            this.sessionStorage.set('Authorization', response.body['access-token'])
             this.navCtrl.push(HomePage);
         }, (error) => {
-            console.log(error);
+            if (error.status === 404 || error.status === 500) {
+                const toast = this.toastCtrl.create({
+                    duration: 5,
+                    position: 'top',
+                    message: 'An error occured. Please contact an administrator.'
+                });
+                toast.present();
+            } else {
+                const toast = this.toastCtrl.create({
+                    duration: 5,
+                    position: 'top',
+                    message: 'Login impossible. Please verify your login and password.'
+                });
+                toast.present();
+            }
         });
         this.email = "";
         this.password = "";
@@ -62,9 +82,13 @@ export class ConnectionPage implements OnInit{
                         if(data.Name != null && data.Email != null && data.Password != null) {
                             console.log("register");
                             this.registerService.register(data.Name, data.Email, data.Password).subscribe(() =>{
-                                console.log("Success");
                             }, () =>{
-                                console.log("error");
+                                const toast = this.toastCtrl.create({
+                                    duration: 5,
+                                    position: 'top',
+                                    message: 'Registration impossible. Please contact an administrator'
+                                });
+                                toast.present();
                             });
                         }
                     }

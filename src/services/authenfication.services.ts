@@ -1,10 +1,11 @@
 import {HttpClient} from "@angular/common/http";
 import {Injectable} from "@angular/core";
-import {SERVER_API_URL} from "../constrant/variables.constrant";
+import {SERVER_API_URL} from "../services-common/constrant/variables.constrant";
+import {Storage} from "@ionic/storage";
 
 @Injectable()
 export class AuthenficationServices {
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private localStorage: Storage) {
 
     }
     /**
@@ -12,7 +13,7 @@ export class AuthenficationServices {
      */
     login(email: string, password:string) {
         const data = {email: email, password: password};
-        return this.http.post(SERVER_API_URL + '/user/login', data,{responseType: 'text'});
+        return this.http.post(SERVER_API_URL + '/user/login', data,{observe: 'response'});
     }
 
     /**
@@ -20,14 +21,14 @@ export class AuthenficationServices {
      */
     logout() {
         // remove user from local storage to log user out
-        localStorage.removeItem('currentUser');
-        localStorage.removeItem('isLoggedIn');
+        this.localStorage.remove('currentUser');
+        this.localStorage.remove('isLoggedIn');
     }
 
     /**
      * Check if current user is logged in
      */
     isLogin() {
-        return !!localStorage.getItem('isLoggedIn');
+        return !!this.localStorage.get('isLoggedIn');
     }
 }
