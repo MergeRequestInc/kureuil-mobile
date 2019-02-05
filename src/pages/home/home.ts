@@ -40,11 +40,12 @@ export class HomePage implements OnInit{
 
     ngOnInit() {
         this.channels = [{id: 1, chanelName: 'Test', query: 'query'}];
-        this.chanelService.getChanel().subscribe((data) => {
-            this.channels = data;
-        }, () => {
-            console.log("No Chanel Found");
-        });
+        // this.chanelService.getChanel().subscribe((data) => {
+        //     this.channels = data;
+        // }, () => {
+        //     console.log("No Chanel Found");
+        // });
+        //this.loadAllChannels();
     }
 
     logOut() {
@@ -53,11 +54,12 @@ export class HomePage implements OnInit{
 
     ionViewWillEnter() {
         this.menuCtrl.close();
-        this.chanelService.getChanel().subscribe((data) => {
-            this.channels = data;
-        }, () => {
-            console.log("No Chanel Found");
-        })
+        // this.chanelService.getChanel().subscribe((data) => {
+        //     this.channels = data;
+        // }, () => {
+        //     console.log("No Chanel Found");
+        // })
+        //this.loadAllChannels();
     }
 
     onCreateCanal() {
@@ -145,5 +147,14 @@ export class HomePage implements OnInit{
 
     openSearch() {
         this.navCtrl.push(SearchPage);
+    }
+
+    /**
+     * Load all the connected user's channels
+     */
+    loadAllChannels() {
+        this.chanelService.loadUserChanel().subscribe( channels => {
+            this.channels = channels;
+        });
     }
 }
