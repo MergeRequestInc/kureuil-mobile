@@ -1,5 +1,6 @@
 import {HttpClient} from "@angular/common/http";
 import {Injectable} from "@angular/core";
+import {SERVER_API_URL} from "../constrant/variables.constrant";
 
 @Injectable()
 export class AuthenficationServices {
@@ -11,7 +12,7 @@ export class AuthenficationServices {
      */
     login(email: string, password:string) {
         const data = {email: email, password: password};
-        return this.http.post('http://localhost:8080' + '/user/login', data,{responseType: 'text'});
+        return this.http.post(SERVER_API_URL + '/user/login', data,{responseType: 'text'});
     }
 
     /**

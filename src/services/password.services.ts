@@ -1,5 +1,6 @@
 import {HttpClient} from "@angular/common/http";
 import {Injectable} from "@angular/core";
+import {SERVER_API_URL} from "../constrant/variables.constrant";
 
 @Injectable()
 export class PasswordServices {
@@ -9,6 +10,6 @@ export class PasswordServices {
      * Reset password with the email
      */
     forgotPassword(email:string) {
-        return this.http.post('http://localhost:8080' + '/account/reset-password/init', email);
+        return this.http.post(SERVER_API_URL + '/account/reset-password/init', email);
     }
 }

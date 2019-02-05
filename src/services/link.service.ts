@@ -3,6 +3,7 @@ import {Chanel} from "../model/chanel";
 import {HttpClient} from "@angular/common/http";
 import {query} from "@angular/animations";
 import {Link} from "../model/link";
+import {SERVER_API_URL} from "../constrant/variables.constrant";
 
 @Injectable()
 export class LinkService {
@@ -14,7 +15,7 @@ export class LinkService {
     Add link
      */
     addLink(link: Link) {
-        return this.http.post('localhost:8080/' + 'links', link,{responseType: 'text'});
+        return this.http.post(SERVER_API_URL + '/links', link,{responseType: 'text'});
 
     }
 
@@ -22,7 +23,7 @@ export class LinkService {
     Get links
      */
     getLinks(query: string) {
-        return this.http.get<string[]>('localhost:8080/' + 'links/' + query);
+        return this.http.get<string[]>(SERVER_API_URL + '/links/' + query);
 
     }
 
@@ -30,7 +31,7 @@ export class LinkService {
     Delete link
      */
     deleteLink(link: string, index: number){
-        return this.http.delete('localhost:8080/' + 'links/' + index,{responseType: 'text'});
+        return this.http.delete(SERVER_API_URL + '/links/' + index,{responseType: 'text'});
 
     }
 
@@ -38,11 +39,11 @@ export class LinkService {
     Update link
      */
     updateLink(link: string){
-        return this.http.put('localhost:/8080/' + 'links', link, {responseType: 'text'});
+        return this.http.put(SERVER_API_URL + '/links', link, {responseType: 'text'});
     }
 
     getLinkById(id: number){
-        return this.http.get<Link>( 'localhost:8080/' + 'links/' + id);
+        return this.http.get<Link>( SERVER_API_URL + '/links/' + id);
 
     }
 }
