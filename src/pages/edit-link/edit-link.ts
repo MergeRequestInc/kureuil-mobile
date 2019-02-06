@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {Link} from "../../model/link";
 import {NgForm} from "@angular/forms";
+import {LinkService} from "../../services/link.service";
 
 /**
  * Generated class for the EditLinkPage page.
@@ -18,25 +19,34 @@ import {NgForm} from "@angular/forms";
 export class EditLinkPage implements OnInit{
 
   linkSelected: Link;
-    linkId: number;
     linkUrl: string;
+    mode: string = 'New';
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+              public linkService: LinkService) {
   }
 
   ngOnInit() {
     this.linkSelected = this.navParams.get('link');
     if (this.linkSelected){
-        this.linkId = this.linkSelected.id;
         this.linkUrl = this.linkSelected.url;
     }
   }
+    ionViewWillEnter(){
+      if(this.navParams.get('mode')){
+          this.mode = this.navParams.get('mode');
+      }
+    }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad EditLinkPage');
-  }
+    back() {
+        this.navCtrl.pop();
+    }
 
     OnEditLink(form: NgForm){
 
+    }
+
+    deleteLink() {
+      this.linkService.delete(this.linkSelected.id).subscribe(() => this.navCtrl.pop()  );
     }
 }

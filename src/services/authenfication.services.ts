@@ -13,7 +13,7 @@ export class AuthenficationServices {
      */
     login(email: string, password:string) {
         const data = {email: email, password: password};
-        return this.http.post(SERVER_API_URL + '/user/login', data,{observe: 'response'});
+        return this.http.post(SERVER_API_URL + 'user/login', data,{observe: 'response'});
     }
 
     /**

@@ -1,5 +1,10 @@
-export class Tag {
+import {BuilderDtoJsonAbstract} from "./builderDtoJsonAbstract";
+
+export class Tag extends BuilderDtoJsonAbstract {
     constructor(
-        public name: string
-    ) {}
+        public id?: number,
+        public name?: string
+    ) {
+        super();
+    }
 }

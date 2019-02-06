@@ -41,15 +41,7 @@ export class HomePage implements OnInit{
     }
 
     ngOnInit() {
-        //this.channels = [{id: 1, chanelName: 'Test', query: 'query'}];
-        // this.chanelService.getChanel().subscribe((data) => {
-        //     this.channels = data;
-        // }, () => {
-        //     console.log("No Chanel Found");
-        // });
         this.loadAllChannels();
-        this.loadLinks("");
-
     }
 
     logOut() {
@@ -58,15 +50,7 @@ export class HomePage implements OnInit{
 
     ionViewWillEnter() {
         this.menuCtrl.close();
-
-        // this.chanelService.getChanel().subscribe((data) => {
-        //     this.channels = data;
-        // }, () => {
-        //     console.log("No Chanel Found");
-        // })
         this.loadAllChannels();
-        this.loadLinks("");
-
     }
 
     onCreateCanal() {
@@ -85,9 +69,9 @@ export class HomePage implements OnInit{
                             title: "Add new link",
                             inputs: [
                                 {
-                                  name: 'id',
-                                  type: 'text',
-                                  placeholder: 'Id'
+                                    name: 'id',
+                                    type: 'number',
+                                    placeholder: 'ID'
                                 },
                                 {
                                     name: 'link',
@@ -103,10 +87,9 @@ export class HomePage implements OnInit{
                                 {
                                     text: 'Add',
                                     handler: (data) => {
-                                        const tag = data.tag.split(",");
-                                        const tags : Tag[] = [];
-                                        tags.push(...tag);
+                                        const tags = data.tag.split(",");
                                         const dataAdd = new Link(data.id, data.link,tags);
+                                        console.log(dataAdd);
                                         this.linkService.addLink(dataAdd).subscribe(() => {
                                             const toast = this.toastCtrl.create({
                                                 position: 'top',
@@ -168,9 +151,5 @@ export class HomePage implements OnInit{
 
     onLoadTag(link: Link) {
         this.navCtrl.push(EditLinkPage, {'link': link});
-    }
-
-    loadLinks(channel: string) {
-        this.links = (Array)(this.linkService.getLinks(channel));
     }
 }

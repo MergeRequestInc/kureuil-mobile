@@ -10,6 +10,6 @@ export class RegisterServices {
 
     register(name: string, email: string, password: string){
         const data = {name: name, email: email, password: password};
-        return this.http.post(SERVER_API_URL + '/user/register', data);
+        return this.http.post(SERVER_API_URL + 'user/register', data);
     }
 }

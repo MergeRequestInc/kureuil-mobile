@@ -24,14 +24,32 @@
     <ion-input [ngModel]="chanelName" type="text" name="chanelName" required></ion-input>
     <ion-label>Query</ion-label>
     <ion-textarea type="text" [ngModel]="query" name="query" required></ion-textarea>
-    <button text-center type="submit" ion-button color="primary" [disabled]="!f.valid">{{mode}}</button>
-    <button ion-button color="danger" [disabled]="!(mode == 'Edit')" (click)="deleteChanel()">Delete</button>
+    <ion-row>
+      <ion-col offset-md-5>
+        <button text-center type="submit" ion-button color="primary" [disabled]="!f.valid">{{mode}}</button>
+        <button ion-button color="danger" [disabled]="!(mode == 'Edit')" (click)="deleteChanel()">Delete</button>
+      </ion-col>
+    </ion-row>
 
   </form>
+  <ion-row>
+    <h4>
+      Lists of Links
+    </h4>
+  </ion-row>
 
-  <ion-card *ngFor="let link of links">
-      <ion-card-header>
-          <a href="{{link.url}}" >{{link.url}}</a>
+  <ion-card tertiary *ngFor="let link of links">
+      <ion-card-header text-center>
+        <ion-card-title>
+          {{link.url}}
+        </ion-card-title>
       </ion-card-header>
+      <ion-card-content>
+        <ion-row>
+          <ion-col *ngFor="let tag of link.tags">
+            <button ion-button primary (click)="onLoadLink(link)">{{tag.name}}</button>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
   </ion-card>
 </ion-content>

@@ -6,6 +6,7 @@ import {Chanel} from "../../model/chanel";
 import {LinkService} from "../../services/link.service";
 import {Link} from "../../model/link";
 import {Tag} from "../../model/tag";
+import {EditLinkPage} from "../edit-link/edit-link";
 
 /**
  * Generated class for the EditChanelPage page.
@@ -48,43 +49,36 @@ export class EditChanelPage{
   }
 
     onAddChanel(form: NgForm) {
-      const data = new Chanel(form.value.chanelId, form.value.name, form.value.query);
-      //console.log(data);
+      const data = new Chanel(form.value.name, form.value.query);
+      console.log(data);
       if(this.mode == 'New'){
           this.chanelService.create(data);
-          this.chanelService.create(data).subscribe(() => {
-              const toast = this.toastCtrl.create({
-                  position: 'top',
-                  message: 'Create channel successfully',
-                  duration: 2000
-              });
-              toast.present();
+          this.chanelService.create(data).subscribe((chanel) => {
+
+              console.log(chanel);
           }, (err)=> {
-              const toast = this.toastCtrl.create({
-                  position: 'top',
-                  message: 'Create channel failed ' + err,
-                  duration: 2000
-              });
-              toast.present();
+              console.log(err);
           });
       } else {
 
-          this.chanelService.update(data).subscribe(() => {
-              const toast = this.toastCtrl.create({
-                 position: 'top',
-                 message: 'Edit channel successfully',
-                  duration: 2000
-
-              });
-              toast.present();
+          this.chanelService.update(data).subscribe((channel) => {
+              // const toast = this.toastCtrl.create({
+              //    position: 'top',
+              //    message: 'Edit channel successfully',
+              //     duration: 2000
+              //
+              // });
+              // toast.present();
+              console.log(channel);
           }, (err) => {
-              const toast = this.toastCtrl.create({
-                  position: 'top',
-                  message: 'Edit channel failed with' + err,
-                  duration: 2000
-
-              });
-              toast.present();
+              // const toast = this.toastCtrl.create({
+              //     position: 'top',
+              //     message: 'Edit channel failed with' + err,
+              //     duration: 2000
+              //
+              // });
+              // toast.present();
+              console.log(err);
           });
 
       }
@@ -92,27 +86,21 @@ export class EditChanelPage{
     }
 
     deleteChanel() {
+      console.log('Delete ' + this.index);
       if(this.chanelDelete != null) {
-          // this.chanelService.deleteChanel(this.navParams.get('chanel')).subscribe(() => {
-          //     console.log('Delete ok');
-          // }, (error) => {
-          //     console.log(error);
-          // });
+
           this.chanelService.delete(this.index).subscribe(() => {
-              const toast = this.toastCtrl.create({
-                  position: 'top',
-                  message: 'Delete link successfully'
-              });
           }, (err)=> {
-              const toast = this.toastCtrl.create({
-                  position: 'top',
-                  message: 'Delete link failed' + err
-              });
+              console.log(err);
           }) ;
       }
     }
 
     back() {
       this.navCtrl.pop();
+    }
+
+    onLoadLink(link:Link) {
+       this.navCtrl.push(EditLinkPage, {'link': link, 'mode': 'Edit'});
     }
 }

@@ -38,9 +38,12 @@
             </ion-card-content>
         </ion-card>
     </ion-list>-->
-    <ion-card text-center *ngFor="let chanel of channels; let i = index;" (click)="onLoadChanel(chanel, i)">
+    <ion-card class="links" text-center *ngFor="let chanel of channels; let i = index;" (click)="onLoadChanel(chanel, i)">
         <ion-card-header>
-            <h4>Channel {{chanel.name}}</h4>
+            <ion-card-title>Channel {{chanel.name}}</ion-card-title>
         </ion-card-header>
+        <ion-card-content>
+            {{ chanel.query}}
+        </ion-card-content>
     </ion-card>
 </ion-content>

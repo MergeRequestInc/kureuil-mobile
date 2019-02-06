@@ -14,12 +14,10 @@
   <h3>Modification {{linkSelected.url}}</h3>
 
     <form #f="ngForm" (ngSubmit)="OnEditLink(f)">
-        <ion-label>Id</ion-label>
-        <ion-input [ngModel]="linkId" type="number" name="linkId" required></ion-input>
         <ion-label>Link's URL</ion-label>
         <ion-input [ngModel]="linkUrl" type="text" name="linkUrl" required></ion-input>
         <ion-label>Tags</ion-label>
         <button text-center type="submit" ion-button color="primary" [disabled]="!f.valid">Edit</button>
-        <button ion-button color="danger" [disabled]="!(mode == 'Edit')" (click)="deleteChanel()">Delete</button>
+        <button ion-button color="danger" [disabled]="!(mode == 'Edit')" (click)="deleteLink()">Delete</button>
     </form>
 </ion-content>
