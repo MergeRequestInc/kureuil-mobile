@@ -26,25 +26,23 @@ export class ConnectionPage implements OnInit{
         this.authenService.logout();
 
     }
-
     login() {
         this.authenService.login(this.loginForm.value.email, this.loginForm.value.userPassword).subscribe((response)=>{
-            //console.log("OK");
             this.localStorage.set('isLoggedIn', 'true');
             this.localStorage.set('Authorization', response.body['access-token']);
-            this.sessionStorage.set('Authorization', response.body['access-token'])
+            this.sessionStorage.set('Authorization', response.body['access-token']);
             this.navCtrl.push(HomePage);
         }, (error) => {
             if (error.status === 404 || error.status === 500) {
                 const toast = this.toastCtrl.create({
-                    duration: 5,
+                    duration: 30,
                     position: 'top',
                     message: 'An error occured. Please contact an administrator.'
                 });
                 toast.present();
             } else {
                 const toast = this.toastCtrl.create({
-                    duration: 5,
+                    duration: 30,
                     position: 'top',
                     message: 'Login impossible. Please verify your login and password.'
                 });

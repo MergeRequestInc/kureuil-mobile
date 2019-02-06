@@ -3,6 +3,9 @@ import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angula
 import {ChanelServices} from "../../services/chanel.services";
 import {NgForm} from "@angular/forms";
 import {Chanel} from "../../model/chanel";
+import {LinkService} from "../../services/link.service";
+import {Link} from "../../model/link";
+import {Tag} from "../../model/tag";
 
 /**
  * Generated class for the EditChanelPage page.
@@ -23,51 +26,63 @@ export class EditChanelPage{
     query: string;
     chanelDelete: Chanel = null;
     index: number;
-
-  constructor(private navCtrl: NavController,private navParams: NavParams,
+    links;
+    linksURL: string[];
+  constructor(private navCtrl: NavController,private navParams: NavParams, public linkService: LinkService,
               private chanelService: ChanelServices, public toastCtrl: ToastController){
 
   }
 
   ionViewWillEnter() {
     this.mode = this.navParams.get('mode');
+    console.log(this.mode);
     if (this.mode == 'Edit') {
         this.chanelDelete = this.navParams.get('chanel');
-        this.chanelName = this.chanelDelete.chanelName;
+        this.chanelName = this.chanelDelete.name;
         this.query = this.chanelDelete.query;
         this.index = this.navParams.get('index');
+        this.linkService.getLinks(this.query).subscribe( (links) => {this.links = links}, () => {
+            this.linkService.getLinks("").subscribe(links => this.links = links);
+        });
     }
   }
 
     onAddChanel(form: NgForm) {
-      const data = new Chanel(form.value.chanelId, form.value.chanelName, form.value.query);
-      console.log(data);
+      const data = new Chanel(form.value.chanelId, form.value.name, form.value.query);
+      //console.log(data);
       if(this.mode == 'New'){
-          this.chanelService.addChanel(data);
-          // this.chanelService.addChanel(data).subscribe(() => {
-          //     console.log('successfully created chanel');
-          //
-          // }, (err)=> {
-          //     console.log(err);
-          // });
+          this.chanelService.create(data);
+          this.chanelService.create(data).subscribe(() => {
+              const toast = this.toastCtrl.create({
+                  position: 'top',
+                  message: 'Create channel successfully',
+                  duration: 2000
+              });
+              toast.present();
+          }, (err)=> {
+              const toast = this.toastCtrl.create({
+                  position: 'top',
+                  message: 'Create channel failed ' + err,
+                  duration: 2000
+              });
+              toast.present();
+          });
       } else {
-          //this.chanelService.editChanel(data,this.index);
-          // this.chanelService.editChanel(data).subscribe(() => {
-          //     console.log('successfully updated chanel');
-          //
-          // }, (err)=> {
-          //     console.log(err);
-          // });
-          this.chanelService.addChanel(data).subscribe(() => {
+
+          this.chanelService.update(data).subscribe(() => {
               const toast = this.toastCtrl.create({
                  position: 'top',
-                 message: 'Create link successfully'
+                 message: 'Edit channel successfully',
+                  duration: 2000
+
               });
               toast.present();
           }, (err) => {
               const toast = this.toastCtrl.create({
                   position: 'top',
-                  message: 'Create link failed with' + err
+                  message: 'Edit channel failed with' + err,
+                  duration: 2000
+
               });
               toast.present();
           });
@@ -83,7 +98,7 @@ export class EditChanelPage{
           // }, (error) => {
           //     console.log(error);
           // });
-          this.chanelService.deleteChanel(this.index).subscribe(() => {
+          this.chanelService.delete(this.index).subscribe(() => {
               const toast = this.toastCtrl.create({
                   position: 'top',
                   message: 'Delete link successfully'

@@ -21,7 +21,7 @@
     </ion-header>
     <ion-content>
         <ion-list *ngFor="let chanel of channels; let i = index;">
-            <button ion-button clear block (click)="onLoadChanel(chanel, i)">{{chanel.chanelName}}</button>
+            <button ion-button clear block (click)="onLoadChanel(chanel, i)">{{chanel.name}}</button>
         </ion-list>
     </ion-content>
 </ion-menu>
@@ -31,21 +31,16 @@
     <!--<ion-list *ngFor="let chanel of channels">
         <ion-card>
             <ion-card-header>
-                {{chanel.chanelName}}
+                {{chanel.name}}
             </ion-card-header>
             <ion-card-content>
                 {{chanel.query}}
             </ion-card-content>
         </ion-card>
     </ion-list>-->
-    <ion-card class="links" *ngFor="let chanel of channels">
-        <ion-card-header class="ChanelHeader">
-            {{chanel.chanelName}}
+    <ion-card text-center *ngFor="let chanel of channels; let i = index;" (click)="onLoadChanel(chanel, i)">
+        <ion-card-header>
+            <h4>Channel {{chanel.name}}</h4>
         </ion-card-header>
-        <ion-card-content>
-            <ion-list *ngFor="let link of links">
-                <button ion-button clear (click)="onLoadTag(link)">{{link.url}}</button>
-            </ion-list>
-        </ion-card-content>
     </ion-card>
 </ion-content>

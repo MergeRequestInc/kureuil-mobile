@@ -31,7 +31,7 @@ import {EditLinkPage} from "../edit-link/edit-link";
 export class HomePage implements OnInit{
 
     channels: Chanel[];
-    links : Link[] = [];
+    links;
     i = 0;
     constructor(public navCtrl: NavController, public chanelServices: ChanelServices,
                 public navParams: NavParams, private menuCtrl: MenuController,
@@ -41,13 +41,15 @@ export class HomePage implements OnInit{
     }
 
     ngOnInit() {
-        this.channels = [{id: 1, chanelName: 'Test', query: 'query'}];
+        //this.channels = [{id: 1, chanelName: 'Test', query: 'query'}];
         // this.chanelService.getChanel().subscribe((data) => {
         //     this.channels = data;
         // }, () => {
         //     console.log("No Chanel Found");
         // });
-        //this.loadAllChannels();
+        this.loadAllChannels();
+        this.loadLinks("");
+
     }
 
     logOut() {
@@ -56,17 +58,15 @@ export class HomePage implements OnInit{
 
     ionViewWillEnter() {
         this.menuCtrl.close();
-        for(;this.i < 10;this.i++){
-            const tag = new Tag("abc");
-            const link = new Link(1,"url" + this.i,[tag,tag,tag,tag,tag]);
-            this.links.push(link);
-        }
+
         // this.chanelService.getChanel().subscribe((data) => {
         //     this.channels = data;
         // }, () => {
         //     console.log("No Chanel Found");
         // })
-        //this.loadAllChannels();
+        this.loadAllChannels();
+        this.loadLinks("");
+
     }
 
     onCreateCanal() {
@@ -161,12 +161,16 @@ export class HomePage implements OnInit{
      * Load all the connected user's channels
      */
     loadAllChannels() {
-        this.chanelService.loadUserChanel().subscribe( channels => {
+        this.chanelService.loadChannelsByUser().subscribe( channels => {
             this.channels = channels;
         });
     }
 
     onLoadTag(link: Link) {
         this.navCtrl.push(EditLinkPage, {'link': link});
+    }
+
+    loadLinks(channel: string) {
+        this.links = (Array)(this.linkService.getLinks(channel));
     }
 }
