@@ -70,7 +70,12 @@ export class EditChanelPage implements OnInit{
               });
               toast.present();
           }, (err)=> {
-              console.log(err);
+              const toast = this.toastCtrl.create({
+                  message:'Create channel failed',
+                  position: 'top',
+                  duration: 20
+              });
+              toast.present();
           });
       } else {
 
@@ -83,14 +88,12 @@ export class EditChanelPage implements OnInit{
               });
               toast.present();
           }, (err) => {
-              // const toast = this.toastCtrl.create({
-              //     position: 'top',
-              //     message: 'Edit channel failed with' + err,
-              //     duration: 2000
-              //
-              // });
-              // toast.present();
-              console.log(err);
+              const toast = this.toastCtrl.create({
+                  message:'Update channel failed',
+                  position: 'top',
+                  duration: 20
+              });
+              toast.present();
           });
 
       }
@@ -102,8 +105,19 @@ export class EditChanelPage implements OnInit{
       if(this.chanelDelete != null) {
 
           this.chanelService.delete(this.index).subscribe(() => {
+              const toast = this.toastCtrl.create({
+                  message:'Delete channel successfully',
+                  position: 'top',
+                  duration: 20
+              });
+              toast.present();
           }, (err)=> {
-              console.log(err);
+              const toast = this.toastCtrl.create({
+                  message:'Delete channel failed',
+                  position: 'top',
+                  duration: 20
+              });
+              toast.present();
           }) ;
       }
     }

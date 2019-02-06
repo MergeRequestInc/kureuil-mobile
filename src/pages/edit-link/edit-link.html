@@ -16,7 +16,16 @@
     <form #f="ngForm" (ngSubmit)="OnEditLink(f)">
         <ion-label>Link's URL</ion-label>
         <ion-input [ngModel]="linkUrl" type="text" name="linkUrl" required></ion-input>
-        <ion-label>Tags</ion-label>
+        <ion-label>Tags 1</ion-label>
+        <ion-input type="text" [ngModel]="tag1" name="tag1"></ion-input>
+        <ion-label>Tags 2</ion-label>
+        <ion-input type="text" [ngModel]="tag2" name="tag2"></ion-input>
+        <ion-label>Tags 3</ion-label>
+        <ion-input type="text" [ngModel]="tag3" name="tag3"></ion-input>
+        <ion-label>Tags 4</ion-label>
+        <ion-input type="text" [ngModel]="tag4" name="tag4"></ion-input>
+        <ion-label>Tags 5</ion-label>
+        <ion-input type="text" [ngModel]="tag5" name="tag5"></ion-input>
         <button text-center type="submit" ion-button color="primary" [disabled]="!f.valid">Edit</button>
         <button ion-button color="danger" [disabled]="!(mode == 'Edit')" (click)="deleteLink()">Delete</button>
     </form>

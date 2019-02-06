@@ -38,7 +38,7 @@
     </h4>
   </ion-row>
 
-  <ion-card tertiary *ngFor="let link of links">
+  <ion-card tertiary *ngFor="let link of links" (click)="onLoadLink(link)">
       <ion-card-header text-center>
         <ion-card-title>
           {{link.url}}
@@ -47,7 +47,7 @@
       <ion-card-content>
         <ion-row>
           <ion-col *ngFor="let tag of link.tags">
-            <button ion-button primary (click)="onLoadLink(link)">{{tag.name}}</button>
+            <button primary ion-button>{{tag.name}}</button>
           </ion-col>
         </ion-row>
       </ion-card-content>

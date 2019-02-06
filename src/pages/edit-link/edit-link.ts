@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
 import {Link} from "../../model/link";
 import {NgForm} from "@angular/forms";
 import {LinkService} from "../../services/link.service";
+import {Tag} from "../../model/tag";
 
 /**
  * Generated class for the EditLinkPage page.
@@ -21,15 +22,31 @@ export class EditLinkPage implements OnInit{
   linkSelected: Link;
     linkUrl: string;
     mode: string = 'New';
+    tags = Array();
+    tag1: string;
+    tag2: string;
+    tag3: string;
+    tag4: string;
+    tag5: string;
+    tagsEdit = Array();
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              public linkService: LinkService) {
+              public linkService: LinkService, public toastCtrl: ToastController) {
   }
 
   ngOnInit() {
     this.linkSelected = this.navParams.get('link');
     if (this.linkSelected){
         this.linkUrl = this.linkSelected.url;
+        for(let tag of this.linkSelected.tags){
+            this.tags.push(tag.name);
+        }
+
+        this.tag1 = this.tags[0];
+        this.tag2 = this.tags[1];
+        this.tag3 = this.tags[2];
+        this.tag4 = this.tags[3];
+        this.tag5 = this.tags[4];
     }
   }
     ionViewWillEnter(){
@@ -43,7 +60,44 @@ export class EditLinkPage implements OnInit{
     }
 
     OnEditLink(form: NgForm){
-
+        if(this.tag1 != "") {
+            const tag1 = new Tag(Math.floor((Math.random() * 1000) + 100), form.value.tag1);
+            this.tagsEdit.push(tag1);
+        }
+        if(this.tag2 != "") {
+            const tag2 = new Tag(Math.floor((Math.random() * 1000) + 100), form.value.tag2);
+            this.tagsEdit.push(tag2);
+        }
+        if(this.tag3 != "") {
+            const tag3 = new Tag(Math.floor((Math.random() * 1000) + 100), form.value.tag3);
+            this.tagsEdit.push(tag3);
+        }
+        if(this.tag4 != "") {
+            const tag4 = new Tag(Math.floor((Math.random() * 1000) + 100), form.value.tag4);
+            this.tagsEdit.push(tag4);
+        }
+        if(this.tag5 != "") {
+            const tag5 = new Tag(Math.floor((Math.random() * 1000) + 100), form.value.tag5);
+            this.tagsEdit.push(tag5);
+        }
+        this.linkSelected.tags = this.tagsEdit;
+        console.log(this.linkSelected);
+        this.linkService.update(this.linkSelected).subscribe(()=>{
+            const toast = this.toastCtrl.create({
+                message:'Update link successfully',
+                position: 'top',
+                duration: 20
+            });
+            toast.present();
+            this.navCtrl.pop();
+        },() =>{
+            const toast = this.toastCtrl.create({
+                message:'Update link failed',
+                position: 'top',
+                duration: 20
+            });
+            toast.present();
+        } )
     }
 
     deleteLink() {
