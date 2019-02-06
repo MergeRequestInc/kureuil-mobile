@@ -47,6 +47,6 @@ export class EditLinkPage implements OnInit{
     }
 
     deleteLink() {
-      this.linkService.delete(this.linkSelected.id).subscribe(() => this.navCtrl.pop()  );
+      this.linkService.delete(this.linkSelected.id).subscribe(() => this.navCtrl.pop());
     }
 }

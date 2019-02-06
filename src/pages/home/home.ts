@@ -31,6 +31,8 @@ import {EditLinkPage} from "../edit-link/edit-link";
 export class HomePage implements OnInit{
 
     channels: Chanel[];
+    tags = Array();
+
     links;
     i = 0;
     constructor(public navCtrl: NavController, public chanelServices: ChanelServices,
@@ -69,11 +71,7 @@ export class HomePage implements OnInit{
                         const alerCtrl = this.alertController.create({
                             title: "Add new link",
                             inputs: [
-                                {
-                                    name: 'id',
-                                    type: 'number',
-                                    placeholder: 'ID'
-                                },
+
                                 {
                                     name: 'link',
                                     type: 'text',
@@ -88,9 +86,13 @@ export class HomePage implements OnInit{
                                 {
                                     text: 'Add',
                                     handler: (data) => {
-                                        const tags = data.tag.split(",");
-                                        const dataAdd = new Link(data.id, data.link,tags);
-                                        console.log(dataAdd);
+                                        const tagName = data.tag.split(",");
+                                        const linkId = Math.floor((Math.random() * 1000) + 100);
+                                        for(let tagn of tagName){
+                                            const tag = new Tag(Math.floor((Math.random() * 1000) + 100), tagn);
+                                            this.tags.push(tag);
+                                        }
+                                        const dataAdd = new Link(linkId, data.link,this.tags);
                                         this.linkService.addLink(dataAdd).subscribe(() => {
                                             const toast = this.toastCtrl.create({
                                                 position: 'top',
