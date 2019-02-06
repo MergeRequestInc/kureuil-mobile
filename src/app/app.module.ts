@@ -18,7 +18,6 @@ import {LinkService} from "../services/link.service";
 import {SearchPage} from "../pages/search/search";
 import {EditLinkPage} from "../pages/edit-link/edit-link";
 import {AuthInterceptor} from "../services-common/interceptor/auth.interceptor";
-import {AuthExpiredInterceptor} from "../services-common/interceptor/auth-expired.interceptor";
 import {IonicStorageModule} from "@ionic/storage";
 
 @NgModule({

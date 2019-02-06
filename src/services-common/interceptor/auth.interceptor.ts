@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
-import {SERVER_API_URL} from "../constrant/variables.constrant";
 import {Storage} from "@ionic/storage";
 import {catchError} from "rxjs/operators";
 import {_throw} from "rxjs/observable/throw";
