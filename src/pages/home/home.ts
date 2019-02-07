@@ -30,7 +30,7 @@ import {EditLinkPage} from "../edit-link/edit-link";
 })
 export class HomePage implements OnInit{
 
-    channels: Chanel[];
+    channels: Chanel[] = [];
     tags = Array();
 
     links;
@@ -52,7 +52,10 @@ export class HomePage implements OnInit{
 
     ionViewWillEnter() {
         this.menuCtrl.close();
-        this.channels = [];
+        console.log(this.channels);
+    }
+
+    ionViewDidEnter() {
         this.loadAllChannels();
     }
 
