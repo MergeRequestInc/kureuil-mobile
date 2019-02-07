@@ -47,6 +47,7 @@ export class EditLinkPage implements OnInit{
         this.tag3 = this.tags[2];
         this.tag4 = this.tags[3];
         this.tag5 = this.tags[4];
+
     }
   }
     ionViewWillEnter(){
@@ -61,23 +62,24 @@ export class EditLinkPage implements OnInit{
     }
 
     OnEditLink(form: NgForm){
-        if(this.tag1 != undefined) {
+      console.log(this.tag5);
+        if(this.tag1 != undefined || this.tag1 != "") {
             const tag1 = new Tag(Math.floor((Math.random() * 1000) + 100), form.value.tag1);
             this.tagsEdit.push(tag1);
         }
-        if(this.tag2 != undefined) {
+        if(this.tag2 != undefined || this.tag2 != "") {
             const tag2 = new Tag(Math.floor((Math.random() * 1000) + 100), form.value.tag2);
             this.tagsEdit.push(tag2);
         }
-        if(this.tag3 != undefined) {
+        if(this.tag3 != undefined || this.tag3 != "") {
             const tag3 = new Tag(Math.floor((Math.random() * 1000) + 100), form.value.tag3);
             this.tagsEdit.push(tag3);
         }
-        if(this.tag4 != undefined) {
+        if(this.tag4 != undefined || this.tag4 != "") {
             const tag4 = new Tag(Math.floor((Math.random() * 1000) + 100), form.value.tag4);
             this.tagsEdit.push(tag4);
         }
-        if(this.tag5 != undefined) {
+        if(this.tag5 != undefined || this.tag5 != "") {
             const tag5 = new Tag(Math.floor((Math.random() * 1000) + 100), form.value.tag5);
             this.tagsEdit.push(tag5);
         }
@@ -91,7 +93,7 @@ export class EditLinkPage implements OnInit{
                 duration: 20
             });
             toast.present();
-            // this.navCtrl.pop();
+            this.navCtrl.pop();
         },() =>{
             const toast = this.toastCtrl.create({
                 message:'Update link failed',
@@ -99,7 +101,6 @@ export class EditLinkPage implements OnInit{
                 duration: 20
             });
             toast.present();
-            // this.navCtrl.pop();
         } )
     }
 

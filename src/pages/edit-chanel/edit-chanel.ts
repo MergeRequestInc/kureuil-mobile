@@ -82,7 +82,8 @@ export class EditChanelPage implements OnInit{
               });
               toast.present();
           });
-      } else {
+      }
+      if (this.mode == 'Edit'){
 
           this.chanelService.update(data).subscribe((channel) => {
               const toast = this.toastCtrl.create({

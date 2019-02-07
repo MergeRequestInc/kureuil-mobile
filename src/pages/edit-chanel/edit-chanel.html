@@ -47,7 +47,7 @@
       <ion-card-content>
         <ion-row>
           <ion-col *ngFor="let tag of link.tags">
-            <button primary ion-button>{{tag.name}}</button>
+            <button primary ion-button *ngIf="tag.name != null">{{tag.name}}</button>
           </ion-col>
         </ion-row>
       </ion-card-content>

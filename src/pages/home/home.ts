@@ -52,7 +52,6 @@ export class HomePage implements OnInit{
 
     ionViewWillEnter() {
         this.menuCtrl.close();
-        console.log(this.channels);
     }
 
     ionViewDidEnter() {
