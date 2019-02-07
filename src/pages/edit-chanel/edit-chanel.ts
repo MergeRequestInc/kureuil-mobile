@@ -54,6 +54,11 @@ export class EditChanelPage implements OnInit{
     }
   }
 
+    ionViewDidEnter() {
+        this.linkService.getLinks(this.query).subscribe( (links) => {this.links = links}, () => {
+            this.linkService.getLinks("").subscribe(links => this.links = links);
+        });
+    }
     onAddChanel(form: NgForm) {
         if(this.chanelId == 0){
             this.chanelId = Math.floor((Math.random() * 1000) + 100);

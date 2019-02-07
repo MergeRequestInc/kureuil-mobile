@@ -96,10 +96,12 @@ export class HomePage implements OnInit{
                                             this.tags.push(tag);
                                         }
                                         const dataAdd = new Link(linkId, data.link,this.tags);
+                                        console.log(dataAdd);
                                         this.linkService.addLink(dataAdd).subscribe(() => {
                                             const toast = this.toastCtrl.create({
                                                 position: 'top',
-                                                message: 'Link data added succesfully'
+                                                message: 'Link data added succesfully',
+                                                duration: 20
                                             });
                                             toast.present();
                                             this.chanelService.getChanel().subscribe((data) => {
