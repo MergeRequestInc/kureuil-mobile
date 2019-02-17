@@ -19,6 +19,7 @@ import {SearchPage} from "../pages/search/search";
 import {EditLinkPage} from "../pages/edit-link/edit-link";
 import {AuthInterceptor} from "../services-common/interceptor/auth.interceptor";
 import {IonicStorageModule} from "@ionic/storage";
+import {AuthExpiredInterceptor} from "../services-common/interceptor/auth-expired.interceptor";
 
 @NgModule({
   declarations: [

@@ -12,8 +12,17 @@ import {Storage} from "@ionic/storage";
   templateUrl: 'Connection.html'
 })
 export class ConnectionPage implements OnInit{
+    /**
+     * user's email
+     */
     email: string;
+    /**
+     * user's password
+     */
     password: string;
+    /**
+     * login form
+     */
     loginForm: FormGroup;
 
     constructor(private authenService: AuthenficationServices, private sessionStorage: Storage, private toastCtrl: ToastController,
@@ -21,11 +30,18 @@ export class ConnectionPage implements OnInit{
                 private alertCtl: AlertController, private navCtrl: NavController, private localStorage: Storage) {
     }
 
+    /**
+     * ng Oninit
+     */
     ngOnInit() {
         this.initializeForm();
         this.authenService.logout();
 
     }
+
+    /**
+     * Login with authenfication service
+     */
     login() {
         this.authenService.login(this.loginForm.value.email, this.loginForm.value.userPassword).subscribe((response)=>{
             this.localStorage.set('isLoggedIn', 'true');
@@ -53,6 +69,9 @@ export class ConnectionPage implements OnInit{
         this.password = "";
     }
 
+    /**
+     * Register a new user
+     */
     registerUser() {
         const alert = this.alertCtl.create({
             title: 'Registration',
@@ -101,6 +120,9 @@ export class ConnectionPage implements OnInit{
         alert.present();
     }
 
+    /**
+     * Forget password
+     */
     forgotPassword() {
         const alert = this.alertCtl.create({
             title: 'Forgotten password',
@@ -130,7 +152,9 @@ export class ConnectionPage implements OnInit{
         alert.present();
     }
 
-
+    /**
+     * Initalization form
+     */
     private initializeForm() {
         this.loginForm = new FormGroup({
             'email': new FormControl(null,Validators.compose([

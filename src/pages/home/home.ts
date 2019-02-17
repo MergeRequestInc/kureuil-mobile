@@ -29,12 +29,35 @@ import {EditLinkPage} from "../edit-link/edit-link";
   templateUrl: 'home.html',
 })
 export class HomePage implements OnInit{
-
+    /**
+     * All user's channels
+     */
     channels: Chanel[] = [];
+    /**
+     * all user's tags
+     */
     tags = Array();
-
+    /**
+     * All user's links
+     */
     links;
+    /**
+     * channel's index in the database
+     */
     i = 0;
+
+    /**
+     * constructor
+     * @param navCtrl
+     * @param chanelServices
+     * @param navParams
+     * @param menuCtrl
+     * @param actionSheetController
+     * @param alertController
+     * @param linkService
+     * @param chanelService
+     * @param toastCtrl
+     */
     constructor(public navCtrl: NavController, public chanelServices: ChanelServices,
                 public navParams: NavParams, private menuCtrl: MenuController,
                 public actionSheetController: ActionSheetController,
@@ -42,22 +65,36 @@ export class HomePage implements OnInit{
                 public chanelService: ChanelServices, public toastCtrl: ToastController) {
     }
 
+    /**
+     * ngOn Init
+     */
     ngOnInit() {
         this.loadAllChannels();
     }
 
+    /**
+     * login out.
+     */
     logOut() {
       this.navCtrl.popToRoot();
     }
-
+    /**
+     * before the ionic view is entered
+     */
     ionViewWillEnter() {
         this.menuCtrl.close();
     }
 
+    /**
+     * after loading the ionic view
+     */
     ionViewDidEnter() {
         this.loadAllChannels();
     }
 
+    /**
+     * creating a new channel to database
+     */
     onCreateCanal() {
         const actionSheet = this.actionSheetController.create({
             title: 'Choose action',
@@ -88,6 +125,7 @@ export class HomePage implements OnInit{
                                 {
                                     text: 'Add',
                                     handler: (data) => {
+
                                         const tagName = data.tag.split(",");
                                         const linkId = Math.floor((Math.random() * 1000) + 100);
                                         for(let tagn of tagName){
@@ -96,6 +134,9 @@ export class HomePage implements OnInit{
                                         }
                                         const dataAdd = new Link(linkId, data.link,this.tags);
                                         console.log(dataAdd);
+                                        /**
+                                         * using service to add link to server
+                                         */
                                         this.linkService.addLink(dataAdd).subscribe(() => {
                                             const toast = this.toastCtrl.create({
                                                 position: 'top',
@@ -131,18 +172,28 @@ export class HomePage implements OnInit{
         actionSheet.present();
     }
 
+    /**
+     * open the menu on the left
+     */
     openMenu() {
         console.log(this.channels.length);
         this.menuCtrl.open();
     }
 
-
+    /**
+     * load user's channel for editing
+     * @param chanel
+     * @param index
+     */
     onLoadChanel(chanel: Chanel, index: number){
         this.menuCtrl.close();
         this.navCtrl.push(EditChanelPage, {chanel: chanel,index: chanel.id, mode: 'Edit'});
         //this.chanel = chanel;
     }
 
+    /**
+     * opening the search page
+     */
     openSearch() {
         this.navCtrl.push(SearchPage);
     }
@@ -156,6 +207,10 @@ export class HomePage implements OnInit{
         });
     }
 
+    /**
+     * onload all tags
+     * @param link
+     */
     onLoadTag(link: Link) {
         this.navCtrl.push(EditLinkPage, {'link': link});
     }

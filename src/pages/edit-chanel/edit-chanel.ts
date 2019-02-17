@@ -21,22 +21,56 @@ import {EditLinkPage} from "../edit-link/edit-link";
   templateUrl: 'edit-chanel.html',
 })
 export class EditChanelPage implements OnInit{
+    /** Mode new or edit channel */
     mode: string;
+    /**
+     * Channel's id
+     */
     chanelId: number;
+    /**
+     * Channel's name
+     */
     chanelName: string;
+    /**
+     * Channel's query
+     */
     query: string;
+    /**
+     * Selected channel
+     */
     chanelDelete: Chanel = null;
+    /**
+     * Selected Channel selected's index
+     */
     index: number;
+    /**
+     * Channel's links
+     */
     links;
-    linksURL: string[];
+
+    /**
+     * Contructor
+     * @param navCtrl
+     * @param navParams
+     * @param linkService
+     * @param chanelService
+     * @param toastCtrl
+     */
   constructor(private navCtrl: NavController,private navParams: NavParams, public linkService: LinkService,
               private chanelService: ChanelServices, public toastCtrl: ToastController){
 
   }
+
+    /**
+     * Ng On init
+     */
     ngOnInit() {
         this.chanelId = Math.floor((Math.random() * 1000) + 100);
     }
 
+    /**
+     * Before entering ionic view
+     */
   ionViewWillEnter() {
     this.mode = this.navParams.get('mode');
     console.log(this.mode);
@@ -54,11 +88,19 @@ export class EditChanelPage implements OnInit{
     }
   }
 
+    /**
+     * After successfully load the ionic view
+     */
     ionViewDidEnter() {
         this.linkService.getLinks(this.query).subscribe( (links) => {this.links = links}, () => {
             this.linkService.getLinks("").subscribe(links => this.links = links);
         });
     }
+
+    /**
+     * Add a channel from app
+     * @param form: ngForm data
+     */
     onAddChanel(form: NgForm) {
         if(this.chanelId == 0){
             this.chanelId = Math.floor((Math.random() * 1000) + 100);
@@ -106,6 +148,9 @@ export class EditChanelPage implements OnInit{
         this.navCtrl.pop();
     }
 
+    /**
+     * Delete the selected channel
+     */
     deleteChanel() {
       console.log('Delete ' + this.index);
       if(this.chanelDelete != null) {
@@ -128,10 +173,17 @@ export class EditChanelPage implements OnInit{
       }
     }
 
+    /**
+     * back to previous page
+     */
     back() {
       this.navCtrl.pop();
     }
 
+    /**
+     * Load all channel's links
+     * @param link
+     */
     onLoadLink(link:Link) {
        this.navCtrl.push(EditLinkPage, {'link': link, 'mode': 'Edit'});
     }

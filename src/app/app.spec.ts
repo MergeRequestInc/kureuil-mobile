@@ -8,7 +8,6 @@ import { MyApp } from './app.component';
 import {AuthenficationServices} from "../services/authenfication.services";
 import {PasswordServices} from "../services/password.services";
 import {RegisterServices} from "../services/register.services";
-import {HttpModule} from "@angular/http";
 import {HttpClientModule} from "@angular/common/http";
 
 describe('MyApp', () => {

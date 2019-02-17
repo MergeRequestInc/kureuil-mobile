@@ -19,21 +19,49 @@ import {Tag} from "../../model/tag";
 })
 export class EditLinkPage implements OnInit{
 
-  linkSelected: Link;
+    /**
+     * Selected link
+     */
+    linkSelected: Link;
+    /**
+     * link's url
+     */
     linkUrl: string;
+    /**
+     * mode new or edit link
+     */
     mode: string = 'New';
+    /**
+     * link's tags
+     */
     tags = Array();
+    /**
+     * tag strings
+     */
     tag1: string;
     tag2: string;
     tag3: string;
     tag4: string;
     tag5: string;
+    /**
+     * tag edits
+     */
     tagsEdit = Array();
 
+    /**
+     * Constructor
+     * @param navCtrl
+     * @param navParams
+     * @param linkService
+     * @param toastCtrl
+     */
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public linkService: LinkService, public toastCtrl: ToastController) {
   }
 
+    /**
+     * NgOn Init
+     */
   ngOnInit() {
     this.linkSelected = this.navParams.get('link');
     if (this.linkSelected){
@@ -50,17 +78,28 @@ export class EditLinkPage implements OnInit{
 
     }
   }
+
+    /**
+     * Before entering ionic view
+     */
     ionViewWillEnter(){
       if(this.navParams.get('mode')){
           this.mode = this.navParams.get('mode');
       }
     }
 
-
+    /**
+     * back to previous page
+     **/
     back() {
         this.navCtrl.pop();
     }
 
+    /**
+     * Edit links from ng form
+     * @param form
+     * @constructor
+     */
     OnEditLink(form: NgForm){
       console.log(this.tag5);
         if(this.tag1 != undefined || this.tag1 != "") {
@@ -104,6 +143,9 @@ export class EditLinkPage implements OnInit{
         } )
     }
 
+    /**
+     * Delete a specify link
+     */
     deleteLink() {
       this.linkService.delete(this.linkSelected.id).subscribe(() => this.navCtrl.pop());
     }

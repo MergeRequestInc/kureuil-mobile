@@ -28,16 +28,6 @@
 
 <ion-content padding>
     <h3>Welcome to K.U.R.E.U.I.L. application !</h3>
-    <!--<ion-list *ngFor="let chanel of channels">
-        <ion-card>
-            <ion-card-header>
-                {{chanel.name}}
-            </ion-card-header>
-            <ion-card-content>
-                {{chanel.query}}
-            </ion-card-content>
-        </ion-card>
-    </ion-list>-->
     <ion-card class="links" text-center *ngFor="let chanel of channels; let i = index;" (click)="onLoadChanel(chanel, i)">
         <ion-card-header>
             <ion-card-title>Channel {{chanel.name}}</ion-card-title>
