@@ -6,11 +6,13 @@ import {LinkService} from "../../services/link.service";
 import {ChanelServices} from "../../services/chanel.services";
 import {CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
 import {IonicModule, NavController, NavParams} from "ionic-angular";
+// @ts-ignore
 
 describe('EditChannel', () =>{
     let component: EditChanelPage;
     let fixture : ComponentFixture<EditChanelPage>;
 
+    // @ts-ignore
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [ EditChanelPage ],
@@ -21,13 +23,17 @@ describe('EditChannel', () =>{
             .compileComponents();
     }));
 
+    // @ts-ignore
     beforeEach(() => {
         fixture = TestBed.createComponent(EditChanelPage);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });
+    // @ts-ignore
 
     it('should create', () => {
+        // @ts-ignore
+
         expect(component).toBeTruthy();
     });
 
